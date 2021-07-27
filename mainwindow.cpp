@@ -8,6 +8,12 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     initLanguagesAndTransliterators();
+
+    // temporary ----------------------------------
+    painter.setExceptionColor(QColor(0,255,0));
+    painter.setIncorrectColor(QColor(255,0,0));
+    // temporary ----------------------------------
+
 }
 
 MainWindow::~MainWindow()
@@ -17,26 +23,34 @@ MainWindow::~MainWindow()
 
 void MainWindow::initLanguagesAndTransliterators()
 {
-    auto pinyin_ukrainian = LanguagePair::createLanguagePair("file.txt");
-    auto german_ukrainian = LanguagePair::createLanguagePair("file.txt");
+    auto pinyin_ukrainian     = LanguagePair::createLanguagePair("/Users/md/Desktop/pinyin_ukrainian.xml");
+    auto german_ukrainian     = LanguagePair::createLanguagePair("/Users/md/Desktop/german_ukrainian.xml");
+    //auto passport_ukrainian   = LanguagePair::createLanguagePair("/Users/md/Desktop/passport_ukrainian.xml");
+    //auto scientific_ukrainian = LanguagePair::createLanguagePair("/Users/md/Desktop/scientific_ukrainian.xml");
 
     languages.add(pinyin_ukrainian);
     languages.add(german_ukrainian);
+    //languages.add(passport_ukrainian);
+    //languages.add(scientific_ukrainian);
 
     transliterators.add(new Transliterator(pinyin_ukrainian));
     transliterators.add(new Transliterator(german_ukrainian));
+    //transliterators.add(new Transliterator(passport_ukrainian));
+    //transliterators.add(new Transliterator(scientific_ukrainian));
+
+    currentTransliterator = transliterators.first();
 }
 
 void MainWindow::updateTransliterator(const QString &sourceLanguage, const QString &targetLanguage)
 {
-    transliterator = transliterators.getTransliterator(sourceLanguage, targetLanguage);
+    currentTransliterator = transliterators.getTransliterator(sourceLanguage, targetLanguage);
 }
 
 void MainWindow::on_textEdit_source_textChanged()
 {
-    auto words = transliterator->transliterate(ui->textEdit_source->toPlainText());
+    auto words = currentTransliterator->transliterate(ui->textEdit_source->toPlainText());
 
-    WordPainter::paintWords(words, "green", "red");
+    painter.paintWords(words);
 
     ui->textEdit_target->setHtml(words.toHtmlText());
 }

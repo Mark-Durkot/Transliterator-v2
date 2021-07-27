@@ -15,16 +15,6 @@ public:
     {
     }
 
-    LanguagePair(const LanguagePair &l)
-    {
-        syllables  = l.syllables;
-        exceptions = l.exceptions;
-
-        firstLanguageName     = l.firstLanguageName;
-        secondLanguageName    = l.secondLanguageName;
-        twoWayTransliteration = l.twoWayTransliteration;
-    }
-
     void operator=(const LanguagePair &l)
     {
         syllables  = l.syllables;
@@ -40,16 +30,16 @@ public:
         XMLParser parser;
         parser.setContent(filename);
 
-        LanguagePair languagePair;
+        LanguagePair *languagePair = new LanguagePair();
 
-        languagePair.firstLanguageName     = parser.parseFirstLanguageName();
-        languagePair.secondLanguageName    = parser.parseSecondLanguageName();
-        languagePair.twoWayTransliteration = parser.parseTwoWayTransliteration();
+        languagePair->firstLanguageName     = parser.parseFirstLanguageName();
+        languagePair->secondLanguageName    = parser.parseSecondLanguageName();
+        languagePair->twoWayTransliteration = parser.parseTwoWayTransliteration();
 
-        languagePair.syllables  = parser.parseSetByTagName("syllable");
-        languagePair.exceptions = parser.parseSetByTagName("exception");
+        languagePair->syllables  = parser.parseSetByTagName("syllable");
+        languagePair->exceptions = parser.parseSetByTagName("exception");
 
-        return new LanguagePair(languagePair);
+        return languagePair;
     }
 
     void swap()
@@ -76,17 +66,28 @@ public:
     const QString &getSecondLanguageName() { return secondLanguageName;    }
     bool isTwoWayTransliteration()         { return twoWayTransliteration; }
 
-    bool isPartOfException(const QString &s) const
+    bool isPartOfException(QString s) const
     {
-        for (auto e : exceptions)
+        s = s.toLower();
+
+        for (const auto &e : exceptions)
         {
-            for (auto word : e.getFirst().split(" \t,"))
+            for (auto word : e.getFirst().split(" "))
             {
-                if (word == s)
-                {
-                    return true;
-                }
+                if (word.toLower() == s) { return true; }
             }
+        }
+
+        return false;
+    }
+
+    bool isException(QString s)
+    {
+        s = s.toLower();
+
+        for (const auto &e : exceptions)
+        {
+            if (e.getFirst().toLower() == s) { return true; }
         }
 
         return false;

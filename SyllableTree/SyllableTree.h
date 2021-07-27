@@ -11,8 +11,10 @@ class SyllableTreeNode : public QObject
 {
     Q_OBJECT
 public:
-    explicit SyllableTreeNode(SyllablePair s, QObject *parent=nullptr)
+    SyllableTreeNode(SyllablePair s={}, QObject *parent=nullptr)
         : QObject(parent), syllable(s) {}
+
+    ~SyllableTreeNode() {}
 
     const SyllablePair &getSyllable() const { return syllable; }
 
@@ -59,10 +61,12 @@ class SyllableTree : public QObject
     Q_OBJECT
 public:
 
-    SyllableTree(SyllablePair rootSyllable, QObject *parent=nullptr)
-        : QObject(parent), rootNode(new SyllableTreeNode(rootSyllable, this))
+    SyllableTree(QObject *parent=nullptr)
+        : QObject(parent), rootNode(new SyllableTreeNode({}, this))
     {
     }
+
+    ~SyllableTree() {}
 
     const SyllableTreeNode *getRootNode() const { return rootNode; }
     SyllableTreeNode *getRootNode()             { return rootNode; }
@@ -76,11 +80,6 @@ public:
         for (auto *node : rootNodeChildren)
         {
             list.append(node->collectChildrenData());
-        }
-
-        for (auto &node : list)
-        {
-            node.push_front(rootNode->getSyllable());
         }
 
         return list;

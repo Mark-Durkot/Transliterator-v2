@@ -12,6 +12,7 @@ public:
     void setContent(const QString &filename)
     {
         file.setFileName(filename);
+
         if (file.open(QIODevice::ReadOnly | QIODevice::Text))
         {
             if (document.setContent(&file))
@@ -28,6 +29,7 @@ public:
         auto items = root.elementsByTagName(tagname);
 
         SyllablePairSet set;
+
         for (int i = 0; i < items.count(); ++i)
         {
             if (items.at(i).isElement())

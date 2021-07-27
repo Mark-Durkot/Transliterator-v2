@@ -13,24 +13,24 @@ enum SyllableType
 class SyllablePair
 {
 public:
-    SyllablePair(const QString &first, const QString &second, SyllableType type=Default)
+    SyllablePair(const QString &first="", const QString &second="", SyllableType type=Default)
     {
-        this->first = first;
+        this->first  = first;
         this->second = second;
-        this->type = type;
+        this->type   = type;
     }
 
-    const QString &getFirst() const     { return first;  }
-    const QString &getSecond() const    { return second; }
-    const SyllableType &getType() const { return type;   }
+    const QString &getFirst() const       { return first;  }
+    const QString &getSecond() const      { return second; }
+    const SyllableType &getType() const   { return type;   }
 
-    QString &getFirst()                 { return first;  }
-    QString &getSecond()                { return second; }
-    SyllableType &getType()             { return type;   }
+    QString &getFirst()                   { return first;  }
+    QString &getSecond()                  { return second; }
+    SyllableType &getType()               { return type;   }
 
-    void setFirst(const QString &first)   { this->first = first;   }
+    void setFirst(const QString &first)   { this->first  = first;  }
     void setSecond(const QString &second) { this->second = second; }
-    void setType(SyllableType type)       { this->type = type;     }
+    void setType(SyllableType type)       { this->type   = type;   }
 
     void swap() { qSwap(first, second); }
 

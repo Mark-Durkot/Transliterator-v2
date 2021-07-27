@@ -4,6 +4,7 @@
 #include "SyllablePair.h"
 
 #include <QList>
+#include <QDebug>
 
 class SyllablePairSet : public QList<SyllablePair>
 {
@@ -16,14 +17,13 @@ public:
         }
     }
 
-    bool containsString(const QString &s) const
+    bool containsString(QString s) const
     {
+        s = s.toLower();
+
         for (const auto &syllable : *this)
         {
-            if (syllable.getFirst() == s || syllable.getSecond() == s)
-            {
-                return true;
-            }
+            if (syllable.getFirst().toLower() == s) { return true; }
         }
 
         return false;
@@ -44,10 +44,8 @@ public:
                     qSwap(syllables[j], syllables[j + 1]);
                 }
             }
-            if (!flag)
-            {
-                break;
-            }
+
+            if (!flag) { return; }
         }
     }
 
@@ -59,6 +57,18 @@ public:
         }
 
         sortByDescendingSyllableLenght();
+    }
+
+    const SyllablePair *findSyllable(QString s) const
+    {
+        s = s.toLower();
+
+        for(auto const &syllable : *this)
+        {
+            if (syllable.getFirst().toLower() == s) { return &syllable; }
+        }
+
+        return nullptr;
     }
 };
 

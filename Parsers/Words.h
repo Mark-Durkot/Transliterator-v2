@@ -25,38 +25,54 @@ class Word
 public:
     Word(const QString &s="", WordType t=WordType::Undefined)
     {
-        word = s;
+        text = s;
         type = t;
     }
 
-    bool isSpace()     const { return type == WordType::Space;     }
-    bool isException() const { return type == WordType::Exception; }
-    bool isIncorrect() const { return type == WordType::Incorrect; }
-
-    QString getHtml() const
-    {
-        if (this->isSpace())
-        {
-            if (word == "\t") { return "&emsp;"; }
-            if (word == "\n") { return "<br>";   }
-        }
-
-        return word;
-    }    
-
-    void markWithColor(const QColor &color)
-    {
-        QString rgb = QString("rgb(%1,%2,%3)").arg(color.red(), color.green(), color.blue());
-        word = QString("<span style=\"color: %1\">%2</span>").arg(rgb, word);
-    }
-
+    bool isSpace()              const { return type == WordType::Space;              }
+    bool isPunct()              const { return type == WordType::Punct;              }
+    bool isIncorrect()          const { return type == WordType::Incorrect;          }
+    bool isException()          const { return type == WordType::Exception;          }
+    bool isNonException()       const { return type == WordType::NonException;       }
+    bool isPotentialException() const { return type == WordType::PotentionException; }
     bool isAlphabetic() const
     {
         return (type == WordType::NonException || type == WordType::Exception || type == WordType::PotentionException);
     }
 
+    void replaceText(QString newText)
+    {
+        if (!text.isEmpty())
+        {
+            if (text[0].isUpper()) { newText[0] = newText[0].toUpper(); }
+        }
+
+        text = newText;
+    }
+
+
+    QString getHtml() const
+    {
+        if (this->isSpace())
+        {
+            if (text == "\t") { return "&emsp;"; }
+            if (text == "\n") { return "<br>";   }
+        }
+
+        return text;
+    }    
+
+    void markWithColor(const QColor &color)
+    {
+        QString rgb = QString("rgb(%1,%2,%3)").arg(QString::number(color.red()),
+                                                   QString::number(color.green()),
+                                                   QString::number(color.blue()));
+
+        text = QString("<span style=\"color: %1\">%2</span>").arg(rgb, text);
+    }
+
 public:
-    QString word;
+    QString  text;
     WordType type;
 };
 
@@ -90,39 +106,57 @@ public:
         return text;
     }
 
-    Word &mergeWords(int startIndex, int endIndex)
+    Word &merge(int startIndex, int endIndex, const QChar &separator)
     {
         auto &words = *this;
-        int replaceCount = endIndex - startIndex;
-        for (int i = 0; i < replaceCount - 1; ++i)
+
+        for (int i = startIndex + 1; i <= endIndex; ++i)
         {
-            words[startIndex].word += this->at(startIndex + 1).word;
-            this->removeAt(i);
+            if (words[i].isAlphabetic())
+            {
+                words[startIndex].text += separator + words[i].text;
+            }
+        }
+
+
+        // removing words from endIndex until startIndex
+        if (words[endIndex].isSpace()) { --endIndex; }
+        while (endIndex > startIndex)
+        {
+            words.removeAt(endIndex--);
         }
 
         return words[startIndex];
     }
 
-    QString join(const QString &separator="")
+    QString join(const QChar &separator)
     {
+        if (this->count() == 1) { return this->first().text; }
+
         QString result;
         foreach(const auto &word, *this)
         {
-            result += word.word + separator;
+            if (word.isAlphabetic())
+            {
+                result += word.text + separator;
+            }
         }
 
         // removing last separator
-        result.remove(result.length() - 1 - separator.length(), separator.length());
+        result.resize(result.length() - 1);
 
         return result;
     }
 };
+
 
 class WordPainter
 {
 public:
     void setExceptionColor(const QColor &c) { exceptionColor = c; }
     void setIncorrectColor(const QColor &c) { incorrectColor = c; }
+    QColor getExceptionColor() const { return exceptionColor; }
+    QColor getIncorrectColor() const { return incorrectColor; }
 
     void paintWords(WordList &words)
     {
@@ -146,7 +180,7 @@ public:
     {
         WordList wordList;
         QString currentWord;
-        languagePair = LanguagePair(l);
+        languagePair = l;
 
         unifySpecialCharacters(text);
 
@@ -170,6 +204,8 @@ public:
             }
         }
 
+        appendWordToList(currentWord, wordList); // appending last word
+
         mergeExceptions(wordList);
 
         return wordList;
@@ -178,14 +214,9 @@ public:
 private:
     static WordType getTypeForWord(const QString &word)
     {
-        if (languagePair.isPartOfException(word))
-        {
-            return WordType::PotentionException;
-        }
-        else
-        {
-            return WordType::NonException;
-        }
+        if (languagePair.isException(word))       { return WordType::Exception; }
+        if (languagePair.isPartOfException(word)) { return WordType::PotentionException; }
+        else                                      { return WordType::NonException; }
     }
 
     /*
@@ -193,26 +224,35 @@ private:
     */
     static void mergeExceptions(WordList &words)
     {
-        auto exceptions = languagePair.getExceptions();
 
         for (int i = 0; i < words.count(); ++i)
         {
             WordList potentialExceptionsList;
             int exceptionEndIndex = -1;
-            while (words[i].type == WordType::PotentionException && i < words.count())
+            while (i < words.count() && (words[i].isPotentialException() || words[i].isSpace()))
             {
                 potentialExceptionsList.append(words[i]);
                 exceptionEndIndex = i;
                 ++i;
             }
 
-            QString potentialException = potentialExceptionsList.join(" ");
-            if (exceptions.containsString(potentialException))
+            if (potentialExceptionsList.isEmpty()) { return; }
+
+            QString potentialException = potentialExceptionsList.join(' ');
+            if (languagePair.isException(potentialException))
             {
-                auto &word = words.mergeWords(exceptionEndIndex - potentialExceptionsList.count(), exceptionEndIndex);
+                auto &word = words.merge(exceptionEndIndex - potentialExceptionsList.count() + 1, exceptionEndIndex, ' ');
                 word.type = WordType::Exception;
             }
+            else
+            {
+                for (int i = exceptionEndIndex - potentialExceptionsList.count() + 1; i < exceptionEndIndex + 1; ++i)
+                {
+                    if (words[i].isAlphabetic()) { words[i].type = WordType::NonException; }
+                }
+            }
         }
+
     }
 
     static void appendWordToList(const QString &word, WordList &list)
@@ -236,15 +276,9 @@ private:
         }
     }
 
-    static bool isPunct(const QChar &c)
-    {
-        return c.isPunct() && !isApostrophe(c);
-    }
+    static bool isPunct(const QChar &c) { return c.isPunct() && !isApostrophe(c); }
 
-    static bool isApostrophe(const QChar &c)
-    {
-        return c == '\'';
-    }
+    static bool isApostrophe(const QChar &c) { return c == '\''; }
 
 private:
     inline static LanguagePair languagePair;
