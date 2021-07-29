@@ -173,16 +173,74 @@ private:
 };
 
 
+struct SpecialCharacter
+{
+    SpecialCharacter() {}
+    SpecialCharacter(const QStringList &c, const QString &u) : characters(c), unifiedCharacter(u) {}
+
+    QStringList characters;
+    QString unifiedCharacter;
+};
+
+
+class CharacterUnifier
+{
+public:
+    CharacterUnifier()
+    {
+        specialCharacters.append({apostrophes, "\'"});
+        specialCharacters.append({ATones, "a"});
+        specialCharacters.append({ETones, "e"});
+        specialCharacters.append({ITones, "i"});
+        specialCharacters.append({OTones, "o"});
+        specialCharacters.append({UTones, "u"});
+    }
+
+    void unifyText(QString &text) const
+    {
+        for (int i = 0; i < text.length(); ++i)
+        {
+            for (const auto &sc : specialCharacters)
+            {
+                if (sc.characters.contains(text[i].toLower()))
+                {
+                    if (text[i].isLower())
+                    {
+                        text.replace(i, sc.unifiedCharacter);
+                    }
+                    else
+                    {
+                        text.replace(i, sc.unifiedCharacter.toUpper());
+                    }
+                }
+            }
+        }
+    }
+
+private:
+    QList<SpecialCharacter> specialCharacters;
+
+    const QStringList apostrophes = { "’", "‘", "‛", "′", "`", "´" };
+
+    // pinyin tones
+    const QStringList ATones   = { "ā", "á", "ǎ", "à" };
+    const QStringList ETones   = { "ē", "é", "ě", "è", "ê", "ê" };
+    const QStringList ITones   = { "ī", "í", "ǐ", "ì" };
+    const QStringList OTones   = { "ō", "ó", "ǒ", "ò" };
+    const QStringList UTones   = { "ū", "ú", "ǔ", "ù", "ǖ", "ǘ", "ǚ", "ǜ" };
+};
+
 class WordCutter
 {
 public:
-    static WordList splitTextByWords(QString text, const LanguagePair &l)
+    WordCutter(const LanguagePair *l) : languagePair(l) {}
+
+    WordList splitTextByWords(QString text) const
     {
         WordList wordList;
         QString currentWord;
-        languagePair = l;
 
-        unifySpecialCharacters(text);
+        characterUnifier.unifyText(text);
 
         for (int i = 0; i < text.length(); ++i)
         {
