@@ -118,7 +118,6 @@ public:
             }
         }
 
-
         // removing words from endIndex until startIndex
         if (words[endIndex].isSpace()) { --endIndex; }
         while (endIndex > startIndex)
@@ -176,9 +175,9 @@ private:
 struct SpecialCharacter
 {
     SpecialCharacter() {}
-    SpecialCharacter(const QStringList &c, const QString &u) : characters(c), unifiedCharacter(u) {}
+    SpecialCharacter(const QString &c, const QString &u) : characters(c), unifiedCharacter(u) {}
 
-    QStringList characters;
+    QString characters;
     QString unifiedCharacter;
 };
 
@@ -188,29 +187,31 @@ class CharacterUnifier
 public:
     CharacterUnifier()
     {
-        specialCharacters.append({apostrophes, "\'"});
-        specialCharacters.append({ATones, "a"});
-        specialCharacters.append({ETones, "e"});
-        specialCharacters.append({ITones, "i"});
-        specialCharacters.append({OTones, "o"});
-        specialCharacters.append({UTones, "u"});
+        specialCharacters.append({"’‘‛′`´", "\'"});
+        specialCharacters.append({"āáǎà", "a"});
+        specialCharacters.append({"ēéěèêê", "e"});
+        specialCharacters.append({"īíǐì", "i"});
+        specialCharacters.append({"ōóǒò", "o"});
+        specialCharacters.append({"ūúǔùǖǘǚǜ", "u"});
     }
 
     void unifyText(QString &text) const
     {
         for (int i = 0; i < text.length(); ++i)
         {
+            if (!text[i].isLetter()) { continue; }
+
             for (const auto &sc : specialCharacters)
             {
-                if (sc.characters.contains(text[i].toLower()))
+                if (sc.characters.contains(text[i]))
                 {
                     if (text[i].isLower())
                     {
-                        text.replace(i, sc.unifiedCharacter);
+                        text.replace(i, 1, sc.unifiedCharacter);
                     }
                     else
                     {
-                        text.replace(i, sc.unifiedCharacter.toUpper());
+                        text.replace(i, 1, sc.unifiedCharacter.toUpper());
                     }
                 }
             }
@@ -219,16 +220,8 @@ public:
 
 private:
     QList<SpecialCharacter> specialCharacters;
-
-    const QStringList apostrophes = { "’", "‘", "‛", "′", "`", "´" };
-
-    // pinyin tones
-    const QStringList ATones   = { "ā", "á", "ǎ", "à" };
-    const QStringList ETones   = { "ē", "é", "ě", "è", "ê", "ê" };
-    const QStringList ITones   = { "ī", "í", "ǐ", "ì" };
-    const QStringList OTones   = { "ō", "ó", "ǒ", "ò" };
-    const QStringList UTones   = { "ū", "ú", "ǔ", "ù", "ǖ", "ǘ", "ǚ", "ǜ" };
 };
+
 
 class WordCutter
 {
@@ -270,19 +263,18 @@ public:
     }
 
 private:
-    static WordType getTypeForWord(const QString &word)
+    WordType getTypeForWord(const QString &word) const
     {
-        if (languagePair.isException(word))       { return WordType::Exception; }
-        if (languagePair.isPartOfException(word)) { return WordType::PotentionException; }
-        else                                      { return WordType::NonException; }
+        if (languagePair->isException(word))       { return WordType::Exception; }
+        if (languagePair->isPartOfException(word)) { return WordType::PotentionException; }
+        else                                       { return WordType::NonException; }
     }
 
     /*
      * for cases when an exception consists of more than one word
     */
-    static void mergeExceptions(WordList &words)
+    void mergeExceptions(WordList &words) const
     {
-
         for (int i = 0; i < words.count(); ++i)
         {
             WordList potentialExceptionsList;
@@ -297,7 +289,7 @@ private:
             if (potentialExceptionsList.isEmpty()) { return; }
 
             QString potentialException = potentialExceptionsList.join(' ');
-            if (languagePair.isException(potentialException))
+            if (languagePair->isException(potentialException))
             {
                 auto &word = words.merge(exceptionEndIndex - potentialExceptionsList.count() + 1, exceptionEndIndex, ' ');
                 word.type = WordType::Exception;
@@ -310,10 +302,9 @@ private:
                 }
             }
         }
-
     }
 
-    static void appendWordToList(const QString &word, WordList &list)
+    void appendWordToList(const QString &word, WordList &list) const
     {
         if (!word.isEmpty())
         {
@@ -322,26 +313,13 @@ private:
         }
     }
 
-    static void unifySpecialCharacters(QString &text)
-    {
-        // unifying apostrophes
-        foreach(const auto &apostroph, apostrophes)
-        {
-            if (text.contains(apostroph))
-            {
-                text.replace(apostroph, "\'");
-            }
-        }
-    }
+    bool isPunct(const QChar &c) const      { return c.isPunct() && !isApostrophe(c); }
 
-    static bool isPunct(const QChar &c) { return c.isPunct() && !isApostrophe(c); }
-
-    static bool isApostrophe(const QChar &c) { return c == '\''; }
+    bool isApostrophe(const QChar &c) const { return c == '\''; }
 
 private:
-    inline static LanguagePair languagePair;
-
-    inline static const QStringList apostrophes = { };
+    const LanguagePair *languagePair;
+    CharacterUnifier characterUnifier;
 };
 
 #endif // WORDS_H
