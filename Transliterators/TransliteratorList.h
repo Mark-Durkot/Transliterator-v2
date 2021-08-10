@@ -5,10 +5,12 @@
 #include "LanguageStructures/LanguagePair.h"
 
 #include <QList>
+#include <QObject>
 
 
-class TransliteratorList : public QList<Transliterator*>
+class TransliteratorList : public QObject, public QList<Transliterator*>
 {
+    Q_OBJECT
 public:
     static TransliteratorList createTransliteratorList()
     {
@@ -29,7 +31,13 @@ public:
         return nullptr;
     }
 
-    void add(Transliterator *l) { this->append(l); }
+    void add(Transliterator *l)
+    {
+        if (l == nullptr) { return; }
+
+        l->setParent(this);
+        this->append(l);
+    }
 };
 
 #endif // TRANSLITERATORLIST_H

@@ -81,7 +81,7 @@ public:
         return false;
     }
 
-    bool isException(QString s)
+    bool isException(QString s) const
     {
         s = s.toLower();
 

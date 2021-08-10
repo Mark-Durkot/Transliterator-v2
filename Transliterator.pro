@@ -21,6 +21,7 @@ HEADERS += \
     Settings.h \
     SyllableTree/SyllableTree.h\
     Parsers/XMLParser.h \
+    Transliterators/PinyinUkrainianTransliterator.h \
     Transliterators/Transliterator.h \
     Transliterators/TransliteratorList.h \
     mainwindow.h

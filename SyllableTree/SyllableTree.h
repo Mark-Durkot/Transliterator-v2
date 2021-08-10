@@ -11,32 +11,32 @@ class SyllableTreeNode : public QObject
 {
     Q_OBJECT
 public:
-    SyllableTreeNode(SyllablePair s={}, QObject *parent=nullptr)
+    SyllableTreeNode(const SyllablePair *s = nullptr, QObject *parent=nullptr)
         : QObject(parent), syllable(s) {}
 
     ~SyllableTreeNode() {}
 
-    const SyllablePair &getSyllable() const { return syllable; }
+    const SyllablePair *getSyllable() const { return syllable; }
 
     SyllableTreeNode *childAt(int index)    { return children[index]; }
 
     const QList<SyllableTreeNode*> &getChildren() const { return children; }
 
-    SyllableTreeNode *addChild(SyllablePair p)
+    SyllableTreeNode *addChild(const SyllablePair *p)
     {
         SyllableTreeNode *newNode = new SyllableTreeNode(p, this);
         children.append(newNode);
         return newNode;
     }
 
-    QList<QList<SyllablePair>> collectChildrenData()
+    QList<QList<const SyllablePair*>> &&collectChildrenData()
     {
         if (children.isEmpty())
         {
-            return QList<QList<SyllablePair>>({{syllable}});
+            return std::move(QList<QList<const SyllablePair *>>({{syllable}}));
         }
 
-        QList<QList<SyllablePair>> data;
+        QList<QList<const SyllablePair*>> data;
 
         for (auto *child : children)
         {
@@ -47,11 +47,11 @@ public:
             node.push_front(syllable);
         }
 
-        return data;
+        return std::move(data);
     }
 
 private:
-    SyllablePair syllable;
+    const SyllablePair *syllable;
     QList<SyllableTreeNode*> children;
 };
 
@@ -71,9 +71,9 @@ public:
     const SyllableTreeNode *getRootNode() const { return rootNode; }
     SyllableTreeNode *getRootNode()             { return rootNode; }
 
-    QList<QList<SyllablePair>> makeList()
+    QList<QList<const SyllablePair*>> &&makeList()
     {
-        QList<QList<SyllablePair>> list;
+        QList<QList<const SyllablePair*>> list;
 
         auto rootNodeChildren = rootNode->getChildren();
 
@@ -82,7 +82,7 @@ public:
             list.append(node->collectChildrenData());
         }
 
-        return list;
+        return std::move(list);
     }
 
 private:

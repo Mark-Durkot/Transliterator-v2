@@ -13,7 +13,9 @@ enum SyllableType
 class SyllablePair
 {
 public:
-    SyllablePair(const QString &first="", const QString &second="", SyllableType type=Default)
+    SyllablePair() = default;
+
+    SyllablePair(const QString &first, const QString &second, SyllableType type=Default)
     {
         this->first  = first;
         this->second = second;
@@ -43,5 +45,8 @@ private:
     QString second;
     SyllableType type;
 };
+
+using SyllablesList   = QList<const SyllablePair *>;
+using SyllablesList2D = QList<QList<const SyllablePair *>>;
 
 #endif // SYLLABLEPAIR_H

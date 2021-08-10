@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include "Transliterators/TransliteratorList.h"
+#include "Transliterators/PinyinUkrainianTransliterator.h"
+
 #include "LanguageStructures/LanguagePairList.h"
 #include "Settings.h"
 
@@ -24,6 +26,8 @@ private:
     void initLanguagesAndTransliterators();
 
     void setupComboBoxes();
+
+    void setupTextEdits();
 
     void updateTransliterator(const QString &sourceLanguage, const QString &targetLanguage);
 

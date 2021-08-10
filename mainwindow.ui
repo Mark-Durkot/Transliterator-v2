@@ -81,10 +81,24 @@
      </spacer>
     </item>
     <item row="1" column="0" rowspan="3" colspan="2">
-     <widget class="QTextEdit" name="textEdit_source"/>
+     <widget class="QTextEdit" name="textEdit_source">
+      <property name="font">
+       <font>
+        <family>Helvetica</family>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+     </widget>
     </item>
     <item row="1" column="3" rowspan="3" colspan="2">
-     <widget class="QTextEdit" name="textEdit_target"/>
+     <widget class="QTextEdit" name="textEdit_target">
+      <property name="font">
+       <font>
+        <family>Helvetica</family>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>

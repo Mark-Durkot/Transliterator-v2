@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     painter.setIncorrectColor(QColor(255,0,0));
     // temporary ----------------------------------
 
+    setupTextEdits();
 }
 
 MainWindow::~MainWindow()
@@ -33,12 +34,19 @@ void MainWindow::initLanguagesAndTransliterators()
     //languages.add(passport_ukrainian);
     //languages.add(scientific_ukrainian);
 
+    //transliterators.add(new PinyinUkrainianTransliterator(pinyin_ukrainian));
     transliterators.add(new Transliterator(pinyin_ukrainian));
     transliterators.add(new Transliterator(german_ukrainian));
     //transliterators.add(new Transliterator(passport_ukrainian));
     //transliterators.add(new Transliterator(scientific_ukrainian));
 
     currentTransliterator = transliterators.first();
+}
+
+void MainWindow::setupTextEdits()
+{
+    ui->textEdit_source->setAcceptRichText(false);
+    ui->textEdit_source->setFocus();
 }
 
 void MainWindow::updateTransliterator(const QString &sourceLanguage, const QString &targetLanguage)

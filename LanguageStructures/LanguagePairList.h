@@ -6,12 +6,10 @@
 #include <QList>
 #include <QObject>
 
-class LanguagePairList : public QObject, public QList<LanguagePair *>
+class LanguagePairList : public  QObject, public QList<LanguagePair *>
 {
     Q_OBJECT
 public:
-    LanguagePairList(QObject *parent=nullptr) : QObject(parent) { }
-
     void add(LanguagePair *l)
     {
         if (l == nullptr) { return; }

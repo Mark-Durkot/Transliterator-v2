@@ -14,15 +14,16 @@ class Transliterator : public QObject
 public:
     Transliterator(LanguagePair *l, QObject *parent=nullptr)
         : QObject(parent),
-          firstLanguageName(l->getFirstLanguageName()),
-          secondLanguageName(l->getSecondLanguageName()),
           languagePair(l)
     {
     }
 
+    virtual void prepare(QString &word)  const { Q_UNUSED(word); }
+    virtual void postwork(QString &word) const { Q_UNUSED(word); }
+
     virtual WordList transliterate(const QString &text) const
     {
-        auto words = WordCutter::splitTextByWords(text, *languagePair);
+        auto words = wordCutter.splitTextByWords(text);
 
         for (auto *word : words.getAlphabeticWordsOnly())
         {
@@ -41,8 +42,8 @@ public:
 
     bool isTransliteratorForLanguages(const QString &lang1, const QString &lang2) const
     {
-        if (firstLanguageName == lang1 && secondLanguageName == lang2) { return true; }
-        if (firstLanguageName == lang2 && secondLanguageName == lang1) { return true; }
+        if (languagePair->getFirstLanguageName() == lang1 && languagePair->getSecondLanguageName() == lang2) { return true; }
+        if (languagePair->getFirstLanguageName() == lang2 && languagePair->getSecondLanguageName() == lang1) { return true; }
 
         return false;
     }
@@ -56,9 +57,10 @@ public:
     }
 
 protected:
-    /* this method needs to be overwritten */
     virtual void transliterateWord(Word &word) const
     {
+        prepare(word.text);
+
         SyllableTree syllableTree;
 
         stringSearch(word.text, syllableTree.getRootNode());
@@ -75,10 +77,12 @@ protected:
 
         for (auto syllable : transliterationSyllables)
         {
-            newText += syllable.getSecond();
+            newText += syllable->getSecond();
         }
 
         word.replaceText(newText);
+
+        postwork(word.text);
     }
 
     virtual void transliterateException(Word &word) const
@@ -89,44 +93,50 @@ protected:
         }
     }
 
-    virtual void stringSearch(QString str, SyllableTreeNode *treeNode) const
+    virtual void stringSearch(const QString &str, SyllableTreeNode *node) const
     {
         for (int i = 0; i < str.length(); ++i)
         {
-            if (auto syl = syllables.findSyllable(str.left(i + 1)))
+            if (str[i] == '\'')
             {
-                auto childNode = treeNode->addChild(*syl);
+                stringSearch(str.right(str.length() - i - 1), node);
+                break;
+            }
+
+            if (auto syllable = syllables.findSyllable(str.left(i + 1)))
+            {
+                auto childNode = node->addChild(syllable);
                 stringSearch(str.right(str.length() - i - 1), childNode);
             }
         }
     }
 
 private:
-    const QList<SyllablePair> getCorrectVariant(const QString &text, const QList<QList<SyllablePair>> &variants) const
+    SyllablesList &&getCorrectVariant(const QString &text, const SyllablesList2D &&variants) const
     {
-        if (variants.isEmpty()) { return {}; }
+        if (variants.isEmpty()) { return std::move(SyllablesList()); }
 
-        auto correctVariants = getCorrectVariants(text, variants);
-        auto shortestVariant = getShortestVariant(correctVariants);
+        auto correctVariants = getCorrectVariants(text, std::move(variants));
+        auto shortestVariant = getShortestVariant(std::move(correctVariants));
 
-        return shortestVariant;
+        return std::move(shortestVariant);
     }
 
-    QList<QList<SyllablePair>> getCorrectVariants(const QString &text, const QList<QList<SyllablePair>> &variants) const
+    SyllablesList2D &&getCorrectVariants(QString text, const SyllablesList2D &&variants) const
     {
-        QList<QList<SyllablePair>> correctVariants;
+        SyllablesList2D correctVariants;
 
         for (auto v : variants)
         {
             QString s;
-            for (auto syllable : v) { s += syllable.getFirst(); }
-            if (text == s) { correctVariants.append(v); }
+            for (auto syllable : v) { s += syllable->getFirst(); }
+            if (text.remove('\'') == s) { correctVariants.append(v); }
         }
 
-        return correctVariants;
+        return std::move(correctVariants);
     }
 
-    QList<SyllablePair> getShortestVariant(const QList<QList<SyllablePair>> &variants) const
+    SyllablesList getShortestVariant(const SyllablesList2D &&variants) const
     {
         if (variants.isEmpty()) { return {}; }
 
@@ -146,12 +156,12 @@ private:
     }
 
 private:
-    QString  firstLanguageName;
-    QString secondLanguageName;
     LanguagePair *languagePair;
 
+protected:
     const SyllablePairSet &syllables  { languagePair->getSyllables()  };
     const SyllablePairSet &exceptions { languagePair->getExceptions() };
+    WordCutter wordCutter { languagePair };
 };
 
 #endif // TRANSLITERATOR_H

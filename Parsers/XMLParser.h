@@ -35,7 +35,7 @@ public:
             if (items.at(i).isElement())
             {
                 auto element = items.at(i).toElement();
-                set.insert(SyllablePair(element.attribute("first"), element.attribute("second")));
+                set.insert(SyllablePair(element.attribute("first").toUtf8(), element.attribute("second").toUtf8()));
             }
             else
             {
