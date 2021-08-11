@@ -23,10 +23,9 @@ enum class WordType
 class Word
 {
 public:
-    Word(const QString &s="", WordType t=WordType::Undefined)
+    Word(const QString &s="", WordType t=WordType::Undefined) :
+        text(s), type(t)
     {
-        text = s;
-        type = t;
     }
 
     bool isSpace()              const { return type == WordType::Space;              }
@@ -313,7 +312,7 @@ private:
         }
     }
 
-    bool isPunct(const QChar &c) const      { return c.isPunct() && !isApostrophe(c); }
+    bool isPunct(const QChar &c) const      { return !isApostrophe(c) && !c.isLetter(); }
 
     bool isApostrophe(const QChar &c) const { return c == '\''; }
 
