@@ -47,7 +47,7 @@ public:
             node.push_front(syllable);
         }
 
-        return std::move(data);
+        return data;
     }
 
 private:
@@ -71,9 +71,9 @@ public:
     const SyllableTreeNode *getRootNode() const { return rootNode; }
     SyllableTreeNode *getRootNode()             { return rootNode; }
 
-    QList<QList<const SyllablePair*>> &&makeList()
+    SyllableList2D makeList()
     {
-        QList<QList<const SyllablePair*>> list;
+        SyllableList2D list;
 
         auto rootNodeChildren = rootNode->getChildren();
 
@@ -82,7 +82,7 @@ public:
             list.append(node->collectChildrenData());
         }
 
-        return std::move(list);
+        return list;
     }
 
 private:
