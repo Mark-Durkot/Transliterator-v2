@@ -35,7 +35,7 @@ void MainWindow::initLanguagesAndTransliterators()
     //languages.add(scientific_ukrainian);
 
     //transliterators.add(new PinyinUkrainianTransliterator(pinyin_ukrainian));
-    transliterators.add(new Transliterator(pinyin_ukrainian));
+    transliterators.add(new PinyinUkrainianTransliterator(pinyin_ukrainian));
     transliterators.add(new Transliterator(german_ukrainian));
     //transliterators.add(new Transliterator(passport_ukrainian));
     //transliterators.add(new Transliterator(scientific_ukrainian));

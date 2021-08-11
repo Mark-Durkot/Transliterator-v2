@@ -18,9 +18,6 @@ public:
     {
     }
 
-    virtual void prepare(QString &word)  const { Q_UNUSED(word); }
-    virtual void postwork(QString &word) const { Q_UNUSED(word); }
-
     virtual WordList transliterate(const QString &text) const
     {
         auto words = wordCutter.splitTextByWords(text);
@@ -57,15 +54,23 @@ public:
     }
 
 protected:
+    virtual void prepareWord(QString &word)  const
+    { Q_UNUSED(word); }
+
+    virtual void postworkWord(QString &word, const SyllableList &syllableList = {}) const
+    { Q_UNUSED(word); Q_UNUSED(syllableList); }
+
     virtual void transliterateWord(Word &word) const
     {
-        prepare(word.text);
+        // prepare the word if required
+        prepareWord(word.text);
 
         SyllableTree syllableTree;
 
         stringSearch(word.text, syllableTree.getRootNode());
 
         auto transliterationSyllables = getCorrectVariant(word.text.toLower(), syllableTree.makeList());
+
 
         if (transliterationSyllables.isEmpty())
         {
@@ -82,7 +87,8 @@ protected:
 
         word.replaceText(newText);
 
-        postwork(word.text);
+        // modify the word if required
+        postworkWord(word.text, transliterationSyllables);
     }
 
     virtual void transliterateException(Word &word) const
@@ -112,19 +118,19 @@ protected:
     }
 
 private:
-    SyllablesList &&getCorrectVariant(const QString &text, const SyllablesList2D &&variants) const
+    SyllableList getCorrectVariant(const QString &text, const SyllableList2D &&variants) const
     {
-        if (variants.isEmpty()) { return std::move(SyllablesList()); }
+        if (variants.isEmpty()) { return std::forward<SyllableList>({}); }
 
         auto correctVariants = getCorrectVariants(text, std::move(variants));
         auto shortestVariant = getShortestVariant(std::move(correctVariants));
 
-        return std::move(shortestVariant);
+        return shortestVariant;
     }
 
-    SyllablesList2D &&getCorrectVariants(QString text, const SyllablesList2D &&variants) const
+    SyllableList2D getCorrectVariants(QString text, const SyllableList2D &&variants) const
     {
-        SyllablesList2D correctVariants;
+        SyllableList2D correctVariants;
 
         for (auto v : variants)
         {
@@ -133,10 +139,10 @@ private:
             if (text.remove('\'') == s) { correctVariants.append(v); }
         }
 
-        return std::move(correctVariants);
+        return correctVariants;
     }
 
-    SyllablesList getShortestVariant(const SyllablesList2D &&variants) const
+    SyllableList getShortestVariant(const SyllableList2D &&variants) const
     {
         if (variants.isEmpty()) { return {}; }
 
