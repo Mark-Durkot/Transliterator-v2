@@ -29,14 +29,14 @@ public:
         return newNode;
     }
 
-    QList<QList<const SyllablePair*>> &&collectChildrenData()
+    SyllableList2D collectChildrenData()
     {
         if (children.isEmpty())
         {
-            return std::move(QList<QList<const SyllablePair *>>({{syllable}}));
+            return {{syllable}};
         }
 
-        QList<QList<const SyllablePair*>> data;
+        SyllableList2D data;
 
         for (auto *child : children)
         {
