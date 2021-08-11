@@ -46,7 +46,7 @@ private:
     SyllableType type;
 };
 
-using SyllablesList   = QList<const SyllablePair *>;
-using SyllablesList2D = QList<QList<const SyllablePair *>>;
+using SyllableList   = QList<const SyllablePair *>;
+using SyllableList2D = QList<QList<const SyllablePair *>>;
 
 #endif // SYLLABLEPAIR_H
