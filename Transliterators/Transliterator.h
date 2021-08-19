@@ -78,6 +78,7 @@ protected:
             return;
         }
 
+
         QString newText;
 
         for (auto syllable : transliterationSyllables)
@@ -93,7 +94,7 @@ protected:
 
     virtual void transliterateException(Word &word) const
     {
-        if (auto exception = languagePair->getExceptions().findSyllable(word.text))
+        if (auto exception = exceptions.findSyllable(word.text))
         {
             word.text = exception->getSecond();
         }
@@ -118,17 +119,24 @@ protected:
     }
 
 private:
-    SyllableList getCorrectVariant(const QString &text, const SyllableList2D &&variants) const
+    SyllableList getCorrectVariant(const QString &text, const SyllableList2D &variants) const
     {
-        if (variants.isEmpty()) { return std::forward<SyllableList>({}); }
+        if (variants.isEmpty()) { return {}; }
 
-        auto correctVariants = getCorrectVariants(text, std::move(variants));
-        auto shortestVariant = getShortestVariant(std::move(correctVariants));
+        auto correctVariants = getCorrectVariants(text, variants);
+
+        for (auto v : correctVariants)
+        {
+            replaceWordStartSyllable(v.first());
+            replaceWordEndSyllable(v.last());
+        }
+
+        auto shortestVariant = getBestVariant(correctVariants);
 
         return shortestVariant;
     }
 
-    SyllableList2D getCorrectVariants(QString text, const SyllableList2D &&variants) const
+    SyllableList2D getCorrectVariants(QString text, const SyllableList2D &variants) const
     {
         SyllableList2D correctVariants;
 
@@ -142,7 +150,30 @@ private:
         return correctVariants;
     }
 
-    SyllableList getShortestVariant(const SyllableList2D &&variants) const
+    SyllableList getBestVariant(const SyllableList2D &variants) const
+    {
+        SyllableList2D highPriorityVariants;
+
+        for (const auto &v : variants)
+        {
+            if (v.first()->getType() == SyllableType::WordStart ||
+                v.last()->getType()  == SyllableType::WordEnd)
+            {
+                highPriorityVariants.append(v);
+            }
+        }
+
+        if (!highPriorityVariants.isEmpty())
+        {
+            return getShortestVariant(highPriorityVariants);
+        }
+        else
+        {
+            return getShortestVariant(variants);
+        }
+    }
+
+    SyllableList getShortestVariant(const SyllableList2D &variants) const
     {
         if (variants.isEmpty()) { return {}; }
 
@@ -159,6 +190,22 @@ private:
         }
 
         return variants[minLengthIndex];
+    }
+
+    void replaceWordStartSyllable(const SyllablePair *s) const
+    {
+        if (auto wordStartSyllable = syllables.getWordStartSyllable(*s))
+        {
+            s = wordStartSyllable;
+        }
+    }
+
+    void replaceWordEndSyllable(const SyllablePair *s) const
+    {
+        if (auto wordEndSyllable = syllables.getWordEndSyllable(*s))
+        {
+            s = wordEndSyllable;
+        }
     }
 
 private:

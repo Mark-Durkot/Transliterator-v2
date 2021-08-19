@@ -63,9 +63,35 @@ public:
     {
         s = s.toLower();
 
-        for(auto const &syllable : *this)
+        for(const auto &syllable : *this)
         {
             if (syllable.getFirst().toLower() == s) { return &syllable; }
+        }
+
+        return nullptr;
+    }
+
+    const SyllablePair *getWordStartSyllable(const SyllablePair &s) const
+    {
+        for (const auto &syllable : *this)
+        {
+            if (syllable.getType() == SyllableType::WordStart && syllable.getFirst() == s.getFirst())
+            {
+                return &syllable;
+            }
+        }
+
+        return nullptr;
+    }
+
+    const SyllablePair *getWordEndSyllable(const SyllablePair &s) const
+    {
+        for (const auto &syllable : *this)
+        {
+            if (syllable.getType() == SyllableType::WordEnd && syllable.getFirst() == s.getFirst())
+            {
+                return &syllable;
+            }
         }
 
         return nullptr;
