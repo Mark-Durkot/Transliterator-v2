@@ -35,7 +35,11 @@ public:
             if (items.at(i).isElement())
             {
                 auto element = items.at(i).toElement();
-                set.insert(SyllablePair(element.attribute("first").toUtf8(), element.attribute("second").toUtf8()));
+                auto first  = element.attribute("first").toUtf8();
+                auto second = element.attribute("second").toUtf8();
+                auto type   = element.attribute("type").toInt();
+
+                set.insert(SyllablePair(first, second, static_cast<SyllableType>(type)));
             }
             else
             {

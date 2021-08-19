@@ -5,9 +5,9 @@
 
 enum SyllableType
 {
-    Default,
-    WordStart,
-    WordEnd
+    Default   = 0,
+    WordStart = 1,
+    WordEnd   = 2
 };
 
 class SyllablePair
