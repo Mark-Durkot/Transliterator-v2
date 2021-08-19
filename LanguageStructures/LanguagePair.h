@@ -74,6 +74,11 @@ public:
         {
             for (auto word : e.getFirst().split(" "))
             {
+                while (word.endsWith("."))
+                {
+                    word.remove(word.length() - 1, 1);
+                }
+
                 if (word.toLower() == s) { return true; }
             }
         }
