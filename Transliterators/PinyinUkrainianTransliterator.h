@@ -48,7 +48,7 @@ private:
         int insertPosition = 0;
         for (int i = 0; i < syllableList.count() - 1; ++i)
         {
-            insertPosition += syllableList[i]->getSecond().length();
+            insertPosition += syllableList[i]->getTarget().length();
 
             if (shouldHaveApostropheBetween(syllableList[i], syllableList[i + 1]))
             {
@@ -61,40 +61,39 @@ private:
 
     bool shouldHaveApostropheBetween(const SyllablePair *s1, const SyllablePair *s2) const
     {
-        return shouldHavePinyinUkrainianApostrophe(s1, s2) ||
-               shouldHavePinyinApostrophe(s2) ||
+        return shouldHavePinyinApostrophe(s1, s2) ||
                shouldHaveUkrainianApostrophe(s1, s2);
-    }
-
-    bool shouldHavePinyinUkrainianApostrophe(const SyllablePair *s1, const SyllablePair *s2) const
-    {
-        if (s1->getFirst().endsWith("ng") && latinVowels.contains(s2->getFirst()[0]))
-        {
-            return true;
-        }
-
-        if (s1->getFirst().endsWith("н") && cyrilicVowels.contains(s2->getFirst()[0]))
-        {
-            return true;
-        }
-
-        return false;
     }
 
     bool shouldHaveUkrainianApostrophe(const SyllablePair *s1, const SyllablePair *s2) const
     {
-        if (s1->getFirst().endsWith("ng") || s1->getFirst().endsWith("ou") || s1->getFirst().endsWith("iu"))
+        if (s1->getSource().endsWith("ng") || s1->getSource().endsWith("ou") || s1->getSource().endsWith("iu"))
         {
             // no apostrophe between бмвфп and йо
-            return (s2->getFirst().startsWith('y') && !s2->getSecond().startsWith("йо"));
+            return (s2->getSource().startsWith('y') && !s2->getTarget().startsWith("йо"));
+        }
+
+        if (s1->getSource().endsWith("ng") && latinVowels.contains(s2->getSource()[0]))
+        {
+            return true;
         }
 
         return false;
     }
 
-    bool shouldHavePinyinApostrophe(const SyllablePair *s2) const
+    bool shouldHavePinyinApostrophe(const SyllablePair *s1, const SyllablePair *s2) const
     {
-        return latinVowels.contains(s2->getSecond()[0]);
+        if (latinVowels.contains(s2->getTarget()[0]))
+        {
+            return true;
+        }
+
+        if (s1->getSource().endsWith("н") && cyrilicVowels.contains(s2->getSource()[0]))
+        {
+            return true;
+        }
+
+        return false;
     }
 
     void addIntersyllableApostrophes(QString &word) const
