@@ -39,19 +39,23 @@ public:
 
     bool isTransliteratorForLanguages(const QString &lang1, const QString &lang2) const
     {
-        if (languagePair->getFirstLanguageName() == lang1 && languagePair->getSecondLanguageName() == lang2) { return true; }
-        if (languagePair->getFirstLanguageName() == lang2 && languagePair->getSecondLanguageName() == lang1) { return true; }
+        if (languagePair->getSourceLanguageName() == lang1 && languagePair->getTargetLanguageName() == lang2) { return true; }
+        if (languagePair->getSourceLanguageName() == lang2 && languagePair->getTargetLanguageName() == lang1) { return true; }
 
         return false;
     }
 
     void prepareLanguagePair(const QString &lang1, const QString &lang2)
     {
-        if (languagePair->getFirstLanguageName() == lang2 && languagePair->getSecondLanguageName() == lang1)
+        if (languagePair->getSourceLanguageName() == lang2 && languagePair->getTargetLanguageName() == lang1)
         {
             languagePair->swap();
         }
     }
+
+    const QString &getSourceLanguageName() const { return languagePair->getSourceLanguageName();   }
+    const QString &getTargetLanguageName() const { return languagePair->getTargetLanguageName();   }
+    bool isTwoWayTransliteration() const         { return languagePair->isTwoWayTransliteration(); }
 
 protected:
     virtual void prepareWord(QString &word)  const
@@ -83,7 +87,7 @@ protected:
 
         for (auto syllable : transliterationSyllables)
         {
-            newText += syllable->getSecond();
+            newText += syllable->getTarget();
         }
 
         word.replaceText(newText);
@@ -96,7 +100,7 @@ protected:
     {
         if (auto exception = exceptions.findSyllable(word.text))
         {
-            word.text = exception->getSecond();
+            word.text = exception->getTarget();
         }
     }
 
@@ -143,7 +147,7 @@ private:
         for (auto v : variants)
         {
             QString s;
-            for (auto syllable : v) { s += syllable->getFirst(); }
+            for (auto syllable : v) { s += syllable->getSource(); }
             if (text.remove('\'') == s) { correctVariants.append(v); }
         }
 

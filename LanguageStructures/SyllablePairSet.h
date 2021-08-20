@@ -23,7 +23,7 @@ public:
 
         for (const auto &syllable : *this)
         {
-            if (syllable.getFirst().toLower() == s) { return true; }
+            if (syllable.getSource().toLower() == s) { return true; }
         }
 
         return false;
@@ -65,7 +65,7 @@ public:
 
         for(const auto &syllable : *this)
         {
-            if (syllable.getFirst().toLower() == s) { return &syllable; }
+            if (syllable.getSource().toLower() == s) { return &syllable; }
         }
 
         return nullptr;
@@ -75,7 +75,7 @@ public:
     {
         for (const auto &syllable : *this)
         {
-            if (syllable.getType() == SyllableType::WordStart && syllable.getFirst() == s.getFirst())
+            if (syllable.getType() == SyllableType::WordStart && syllable.getSource() == s.getSource())
             {
                 return &syllable;
             }
@@ -88,7 +88,7 @@ public:
     {
         for (const auto &syllable : *this)
         {
-            if (syllable.getType() == SyllableType::WordEnd && syllable.getFirst() == s.getFirst())
+            if (syllable.getType() == SyllableType::WordEnd && syllable.getSource() == s.getSource())
             {
                 return &syllable;
             }

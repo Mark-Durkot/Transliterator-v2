@@ -20,8 +20,8 @@ public:
         syllables  = l.syllables;
         exceptions = l.exceptions;
 
-        firstLanguageName     = l.firstLanguageName;
-        secondLanguageName    = l.secondLanguageName;
+        sourceLanguageName     = l.sourceLanguageName;
+        targetLanguageName    = l.targetLanguageName;
         twoWayTransliteration = l.twoWayTransliteration;
     }
 
@@ -32,8 +32,8 @@ public:
 
         LanguagePair *languagePair = new LanguagePair();
 
-        languagePair->firstLanguageName     = parser.parseFirstLanguageName();
-        languagePair->secondLanguageName    = parser.parseSecondLanguageName();
+        languagePair->sourceLanguageName     = parser.parseFirstLanguageName();
+        languagePair->targetLanguageName    = parser.parseSecondLanguageName();
         languagePair->twoWayTransliteration = parser.parseTwoWayTransliteration();
 
         languagePair->syllables  = parser.parseSetByTagName("syllable");
@@ -48,7 +48,7 @@ public:
         {
             syllables.swap();
             exceptions.swap();
-            qSwap(firstLanguageName, secondLanguageName);
+            qSwap(sourceLanguageName, targetLanguageName);
             sortByDescendingSyllableLenght();
         }
     }
@@ -62,17 +62,18 @@ public:
     const SyllablePairSet &getSyllables()  const { return syllables;  }
     const SyllablePairSet &getExceptions() const { return exceptions; }
 
-    const QString  &getFirstLanguageName() { return firstLanguageName;     }
-    const QString &getSecondLanguageName() { return secondLanguageName;    }
-    bool isTwoWayTransliteration()         { return twoWayTransliteration; }
+    const QString &getSourceLanguageName() const { return sourceLanguageName;     }
+    const QString &getTargetLanguageName() const { return targetLanguageName;    }
+    bool isTwoWayTransliteration() const         { return twoWayTransliteration; }
 
     bool isPartOfException(QString s) const
+
     {
         s = s.toLower();
 
         for (const auto &e : exceptions)
         {
-            for (auto word : e.getFirst().split(" "))
+            for (auto word : e.getSource().split(" "))
             {
                 while (word.endsWith("."))
                 {
@@ -92,7 +93,7 @@ public:
 
         for (const auto &e : exceptions)
         {
-            if (e.getFirst().toLower() == s) { return true; }
+            if (e.getSource().toLower() == s) { return true; }
         }
 
         return false;
@@ -102,8 +103,8 @@ private:
     SyllablePairSet syllables;
     SyllablePairSet exceptions;
 
-    QString  firstLanguageName;
-    QString secondLanguageName;
+    QString sourceLanguageName;
+    QString targetLanguageName;
     bool twoWayTransliteration;
 };
 

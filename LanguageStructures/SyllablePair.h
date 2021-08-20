@@ -15,34 +15,30 @@ class SyllablePair
 public:
     SyllablePair() = default;
 
-    SyllablePair(const QString &first, const QString &second, SyllableType type=Default)
+    SyllablePair(const QString &source, const QString &target, SyllableType type=Default)
     {
-        this->first  = first;
-        this->second = second;
+        this->source = source;
+        this->target = target;
         this->type   = type;
     }
 
-    const QString &getFirst() const       { return first;  }
-    const QString &getSecond() const      { return second; }
+    const QString &getSource()    const   { return source; }
+    const QString &getTarget()    const   { return target; }
     const SyllableType &getType() const   { return type;   }
 
-    QString &getFirst()                   { return first;  }
-    QString &getSecond()                  { return second; }
-    SyllableType &getType()               { return type;   }
+    void setSource(const QString &source) { this->source  = source; }
+    void setTarget(const QString &target) { this->target  = target; }
+    void setType(SyllableType type)       { this->type    = type;   }
 
-    void setFirst(const QString &first)   { this->first  = first;  }
-    void setSecond(const QString &second) { this->second = second; }
-    void setType(SyllableType type)       { this->type   = type;   }
+    void swap() { qSwap(source, target); }
 
-    void swap() { qSwap(first, second); }
+    bool operator==(const SyllablePair &p) const { return source == p.source && target == p.target; }
 
-    bool operator==(const SyllablePair &p) const { return first == p.first && second == p.second; }
-
-    bool isShorterThan(const SyllablePair &p) const { return first.length() < p.first.length(); }
+    bool isShorterThan(const SyllablePair &p) const { return source.length() < p.source.length(); }
 
 private:
-    QString first;
-    QString second;
+    QString source;
+    QString target;
     SyllableType type;
 };
 
