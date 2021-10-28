@@ -31,12 +31,64 @@ public:
         return nullptr;
     }
 
+    Transliterator *getDefaultForSourceLanguage(const QString &sourceLanguage)
+    {
+        for (auto transliterator : *this)
+        {
+            if (transliterator->getCurrentSourceLanguage() == sourceLanguage)
+            {
+                return transliterator;
+            }
+
+            if (transliterator->getCurrentTargetLanguage() == sourceLanguage && transliterator->isTwoWayTransliteration())
+            {
+                transliterator->prepareLanguagePair(sourceLanguage, transliterator->getCurrentSourceLanguage());
+                return transliterator;
+            }
+        }
+
+        return nullptr;
+    }
+
     void add(Transliterator *l)
     {
         if (l == nullptr) { return; }
 
         l->setParent(this);
         this->append(l);
+    }
+
+    QStringList getSourceComboBoxLanguages() const
+    {
+        QStringList sourceLanguages;
+        for (const auto transliterator : *this)
+        {
+            auto source = transliterator->getSourceLanguageName();
+            if (!sourceLanguages.contains(source))
+            {
+                sourceLanguages << source;
+            }
+        }
+
+        return sourceLanguages;
+    }
+
+    QStringList getTargetComboBoxLanguages(const QString &source)
+    {
+        QStringList targetLanguages;
+        for (const auto transliterator : *this)
+        {
+            if (transliterator->getSourceLanguageName() == source)
+            {
+                QString target = transliterator->getTargetLanguageName();
+                if (!targetLanguages.contains(target))
+                {
+                    targetLanguages << target;
+                }
+            }
+        }
+
+        return targetLanguages;
     }
 };
 

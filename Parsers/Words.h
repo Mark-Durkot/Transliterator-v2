@@ -173,7 +173,6 @@ private:
 
 struct SpecialCharacter
 {
-    SpecialCharacter() {}
     SpecialCharacter(const QString &c, const QString &u) : characters(c), unifiedCharacter(u) {}
 
     QString characters;
@@ -186,12 +185,12 @@ class CharacterUnifier
 public:
     CharacterUnifier()
     {
-        specialCharacters.append({"’‘‛′`´", "\'"});
-        specialCharacters.append({"āáǎà", "a"});
-        specialCharacters.append({"ēéěèêê", "e"});
-        specialCharacters.append({"īíǐì", "i"});
-        specialCharacters.append({"ōóǒò", "o"});
-        specialCharacters.append({"ūúǔùǖǘǚǜ", "u"});
+        specialCharacters.append(SpecialCharacter("’‘‛′`´", "\'"));
+        specialCharacters.append(SpecialCharacter("āáǎà", "a"));
+        specialCharacters.append(SpecialCharacter("ēéěèêê", "e"));
+        specialCharacters.append(SpecialCharacter("īíǐì", "i"));
+        specialCharacters.append(SpecialCharacter("ōóǒò", "o"));
+        specialCharacters.append(SpecialCharacter("ūúǔùǖǘǚǜ", "u"));
     }
 
     void unifyText(QString &text) const
@@ -317,7 +316,7 @@ private:
     bool isApostrophe(const QChar &c) const { return c == '\''; }
 
 private:
-    const LanguagePair *languagePair;
+    const LanguagePair  *languagePair;
     CharacterUnifier characterUnifier;
 };
 

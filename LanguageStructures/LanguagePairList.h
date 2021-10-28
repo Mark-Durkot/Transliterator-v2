@@ -18,6 +18,76 @@ public:
 
         this->append(l);
     }
+
+    QStringList getSourceLanguages() const
+    {
+        QStringList sourceLanguages;
+
+        for (const auto language : *this)
+        {
+            auto source = language->getSourceLanguageName();
+            auto target = language->getTargetLanguageName();
+
+            if (!sourceLanguages.contains(source))
+                sourceLanguages << source;
+
+            if (language->isTwoWayTransliteration())
+            {
+                if (!sourceLanguages.contains(target))
+                    sourceLanguages << target;
+            }
+        }
+
+        return sourceLanguages;
+    }
+
+    QStringList getAvailableTargetLanguages(const QString &currentSource)
+    {
+        QStringList targetLanguages;
+
+        for (const auto language : *this)
+        {
+            auto source = language->getSourceLanguageName();
+            auto target = language->getTargetLanguageName();
+
+            if (source == currentSource)
+            {
+                if (!targetLanguages.contains(source))
+                    targetLanguages  << target;
+            }
+
+            if (target == currentSource && language->isTwoWayTransliteration())
+            {
+                if (!targetLanguages.contains(source))
+                    targetLanguages << source;
+            }
+        }
+
+        return targetLanguages;
+    }
+
+    QStringList getAllTargetLanguages() const
+    {
+        QStringList targetLanguages;
+
+        for (const auto language : *this)
+        {
+            auto source = language->getSourceLanguageName();
+            auto target = language->getTargetLanguageName();
+
+            if (!targetLanguages.contains(target))
+                targetLanguages << target;
+
+            if (language->isTwoWayTransliteration())
+            {
+                if (!targetLanguages.contains(source))
+                    targetLanguages << source;
+            }
+        }
+
+        return targetLanguages;
+    }
+
 };
 
 #endif // LANGUAGEPAIRLIST_H

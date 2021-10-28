@@ -35,26 +35,26 @@ public:
             if (items.at(i).isElement())
             {
                 auto element = items.at(i).toElement();
-                auto first  = element.attribute("first").toUtf8();
-                auto second = element.attribute("second").toUtf8();
-                auto type   = element.attribute("type").toInt();
+                auto source  = element.attribute("source").toUtf8();
+                auto target  = element.attribute("target").toUtf8();
+                auto type    = element.attribute("type"  ).toInt();
 
-                set.insert(SyllablePair(first, second, static_cast<SyllableType>(type)));
+                set.insert(SyllablePair(source, target, static_cast<SyllableType>(type)));
             }
             else
             {
-                throw "Item " + items.at(i).nodeName() + " is not an element";
+                throw QString("Item " + items.at(i).nodeName() + " is not an element");
             }
         }
 
         return set;
     }
 
-    QString parseFirstLanguageName()  { return root.attribute("first_language");  }
+    QString parseFirstLanguageName()  { return root.attribute("source_language");       }
 
-    QString parseSecondLanguageName() { return root.attribute("second_language"); }
+    QString parseSecondLanguageName() { return root.attribute("target_language");       }
 
-    bool parseTwoWayTransliteration() { return root.attribute("twt").toInt();     }
+    bool parseTwoWayTransliteration() { return root.attribute("bidirectional").toInt(); }
 
 private:
     QDomDocument document;

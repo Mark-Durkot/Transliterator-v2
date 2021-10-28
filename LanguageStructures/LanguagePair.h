@@ -23,6 +23,9 @@ public:
         sourceLanguageName     = l.sourceLanguageName;
         targetLanguageName    = l.targetLanguageName;
         twoWayTransliteration = l.twoWayTransliteration;
+
+        currentSourceLanguageName = sourceLanguageName;
+        currentTargetLanguageName = targetLanguageName;
     }
 
     static LanguagePair *createLanguagePair(const QString &filename)
@@ -32,9 +35,12 @@ public:
 
         LanguagePair *languagePair = new LanguagePair();
 
-        languagePair->sourceLanguageName     = parser.parseFirstLanguageName();
+        languagePair->sourceLanguageName    = parser.parseFirstLanguageName();
         languagePair->targetLanguageName    = parser.parseSecondLanguageName();
         languagePair->twoWayTransliteration = parser.parseTwoWayTransliteration();
+
+        languagePair->currentSourceLanguageName = languagePair->sourceLanguageName;
+        languagePair->currentTargetLanguageName = languagePair->targetLanguageName;
 
         languagePair->syllables  = parser.parseSetByTagName("syllable");
         languagePair->exceptions = parser.parseSetByTagName("exception");
@@ -48,7 +54,7 @@ public:
         {
             syllables.swap();
             exceptions.swap();
-            qSwap(sourceLanguageName, targetLanguageName);
+            qSwap(currentSourceLanguageName, currentTargetLanguageName);
             sortByDescendingSyllableLenght();
         }
     }
@@ -62,9 +68,17 @@ public:
     const SyllablePairSet &getSyllables()  const { return syllables;  }
     const SyllablePairSet &getExceptions() const { return exceptions; }
 
-    const QString &getSourceLanguageName() const { return sourceLanguageName;     }
+    const QString &getSourceLanguageName() const { return sourceLanguageName;    }
     const QString &getTargetLanguageName() const { return targetLanguageName;    }
     bool isTwoWayTransliteration() const         { return twoWayTransliteration; }
+
+    const QString &getCurrentSourceLanguage() const { return currentSourceLanguageName; }
+    const QString &getCurrentTargetLanguage() const { return currentTargetLanguageName; }
+
+    QString getLanguagePairId() const
+    {
+        return sourceLanguageName.toLower() + "_" + targetLanguageName.toLower();
+    }
 
     bool isPartOfException(QString s) const
 
@@ -106,6 +120,9 @@ private:
     QString sourceLanguageName;
     QString targetLanguageName;
     bool twoWayTransliteration;
+
+    QString currentSourceLanguageName;
+    QString currentTargetLanguageName;
 };
 
 #endif // LANGUAGEPAIR_H

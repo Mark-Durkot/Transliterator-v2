@@ -10,7 +10,9 @@ CONFIG += c++11
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    preferencesdialog.cpp \
+    preferencesdialogdev.cpp
 
 HEADERS += \
     LanguageStructures/LanguagePair.h \
@@ -18,18 +20,34 @@ HEADERS += \
     LanguageStructures/SyllablePair.h \
     LanguageStructures/SyllablePairSet.h \
     Parsers/Words.h \
-    Settings.h \
+    Settings/Settings.h \
     SyllableTree/SyllableTree.h\
     Parsers/XMLParser.h \
+    Transliterators/GermanUkrainianTransliterator.h \
+    Transliterators/PassportUkrainianTransliterator.h \
     Transliterators/PinyinUkrainianTransliterator.h \
+    Transliterators/ScientificUkrainianTransliterator.h \
+    Transliterators/SpanishUkrainianTransliterator.h \
     Transliterators/Transliterator.h \
     Transliterators/TransliteratorList.h \
-    mainwindow.h
+    mainwindow.h \
+    preferencesdialog.h \
+    preferencesdialogdev.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    preferencesdialog.ui \
+    preferencesdialogdev.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    icons.qrc \
+    libraries.qrc
+
+maxc {
+    ICON = Logo.icns
+}

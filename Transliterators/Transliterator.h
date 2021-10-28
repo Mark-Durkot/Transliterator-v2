@@ -39,23 +39,41 @@ public:
 
     bool isTransliteratorForLanguages(const QString &lang1, const QString &lang2) const
     {
-        if (languagePair->getSourceLanguageName() == lang1 && languagePair->getTargetLanguageName() == lang2) { return true; }
-        if (languagePair->getSourceLanguageName() == lang2 && languagePair->getTargetLanguageName() == lang1) { return true; }
+        if (languagePair->getCurrentSourceLanguage() == lang1 && languagePair->getCurrentTargetLanguage() == lang2)
+        {
+            return true;
+        }
+
+        if (languagePair->getCurrentSourceLanguage() == lang2 && languagePair->getCurrentTargetLanguage() == lang1)
+        {
+            return true;
+        }
 
         return false;
     }
 
     void prepareLanguagePair(const QString &lang1, const QString &lang2)
     {
-        if (languagePair->getSourceLanguageName() == lang2 && languagePair->getTargetLanguageName() == lang1)
+        if (languagePair->getCurrentSourceLanguage() == lang2 && languagePair->getCurrentTargetLanguage() == lang1)
         {
             languagePair->swap();
         }
     }
 
+    const LanguagePair *getLanguagePair()  const     { return languagePair; }
+
+    void setLanguagePair(LanguagePair *languagePair)
+    {
+        languagePair->setParent(this);
+        this->languagePair = languagePair;
+    }
+
     const QString &getSourceLanguageName() const { return languagePair->getSourceLanguageName();   }
     const QString &getTargetLanguageName() const { return languagePair->getTargetLanguageName();   }
     bool isTwoWayTransliteration() const         { return languagePair->isTwoWayTransliteration(); }
+
+    const QString &getCurrentSourceLanguage() const { return languagePair->getCurrentSourceLanguage(); }
+    const QString &getCurrentTargetLanguage() const { return languagePair->getCurrentTargetLanguage(); }
 
 protected:
     virtual void prepareWord(QString &word)  const
@@ -74,7 +92,6 @@ protected:
         stringSearch(word.text, syllableTree.getRootNode());
 
         auto transliterationSyllables = getCorrectVariant(word.text.toLower(), syllableTree.makeList());
-
 
         if (transliterationSyllables.isEmpty())
         {

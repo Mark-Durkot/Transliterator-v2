@@ -1,18 +1,31 @@
-#ifndef MAINWINDOW_H
+﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include "Transliterators/TransliteratorList.h"
 #include "Transliterators/PinyinUkrainianTransliterator.h"
+#include "Transliterators/GermanUkrainianTransliterator.h"
+#include "Transliterators/SpanishUkrainianTransliterator.h"
+#include "Transliterators/PassportUkrainianTransliterator.h"
+#include "Transliterators/ScientificUkrainianTransliterator.h"
 
 #include "LanguageStructures/LanguagePairList.h"
-#include "Settings.h"
+#include "Settings/Settings.h"
 
+#include "preferencesdialog.h"
+#include "preferencesdialogdev.h"
+
+#include <chrono>
+
+#include <QStandardItem>
+#include <QStandardItemModel>
 #include <QMainWindow>
 #include <QColor>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
+
+using namespace std::chrono;
 
 class MainWindow : public QMainWindow
 {
@@ -29,20 +42,36 @@ private:
 
     void setupTextEdits();
 
-    void updateTransliterator(const QString &sourceLanguage, const QString &targetLanguage);
+    void updateCurrentTransliterator(const QString &sourceLanguage, const QString &targetLanguage);
+
+    void updateSwapButtonStatus();
+
+    void activateTargetComboBoxItems();
+
+    void runDevelopersPreferences();
+
+    void runUsersPreferences();
 
 private slots:
     void on_textEdit_source_textChanged();
 
-    void on_comboBox_source_activated(const QString &arg1);
-
-    void on_comboBox_target_activated(const QString &arg1);
-
     void on_pushButton_swap_clicked();
+
+//    void on_comboBox_source_textActivated(const QString &arg1);
+
+//    void on_comboBox_target_textActivated(const QString &arg1);
+
+    void on_actionPreferences_triggered();
+
+    void on_comboBox_source_currentTextChanged(const QString &arg1);
+
+    void on_comboBox_target_currentTextChanged(const QString &arg1);
+
+    void on_actionUpdate_Libraries_triggered();
 
 private:
     void writeSettings();
-    void loadSettings();
+    void readSettings();
 
 private:
     Ui::MainWindow *ui;

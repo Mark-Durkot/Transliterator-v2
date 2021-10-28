@@ -17,6 +17,11 @@
    <layout class="QGridLayout" name="gridLayout">
     <item row="2" column="2">
      <widget class="QPushButton" name="pushButton_swap">
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+       </font>
+      </property>
       <property name="text">
        <string>&lt;=&gt;</string>
       </property>
@@ -111,8 +116,45 @@
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuAbout">
+    <property name="title">
+     <string>About</string>
+    </property>
+    <addaction name="actionPreferences"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <addaction name="actionUpdate_Libraries"/>
+   </widget>
+   <addaction name="menuAbout"/>
+   <addaction name="menuEdit"/>
   </widget>
+  <action name="actionPreferences">
+   <property name="text">
+    <string>Preferences</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+,</string>
+   </property>
+  </action>
+  <action name="actionUpdate_Libraries">
+   <property name="text">
+    <string>Update Libraries</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+U</string>
+   </property>
+  </action>
  </widget>
+ <tabstops>
+  <tabstop>comboBox_source</tabstop>
+  <tabstop>comboBox_target</tabstop>
+  <tabstop>pushButton_swap</tabstop>
+  <tabstop>textEdit_source</tabstop>
+  <tabstop>textEdit_target</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
