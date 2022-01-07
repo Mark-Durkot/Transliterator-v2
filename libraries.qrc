@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>german_ukrainian.xml</file>
+        <file>pinyin_ukrainian.xml</file>
+        <file>ukrainian_passport.xml</file>
+        <file>ukrainian_scientific.xml</file>
+        <file>spanish_ukrainian.xml</file>
+    </qresource>
+</RCC>

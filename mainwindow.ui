@@ -127,6 +127,8 @@
      <string>Edit</string>
     </property>
     <addaction name="actionUpdate_Libraries"/>
+    <addaction name="separator"/>
+    <addaction name="actionClear"/>
    </widget>
    <addaction name="menuAbout"/>
    <addaction name="menuEdit"/>
@@ -145,6 +147,14 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+U</string>
+   </property>
+  </action>
+  <action name="actionClear">
+   <property name="text">
+    <string>Clear</string>
+   </property>
+   <property name="shortcut">
+    <string>Esc</string>
    </property>
   </action>
  </widget>

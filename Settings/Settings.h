@@ -205,6 +205,15 @@ public:
         return isActive;
     }
 
+    void clearLanguages()
+    {
+        settings.beginGroup("languages");
+
+        settings.clear();
+
+        settings.endGroup();
+    }
+
 private:
     QSettings settings;
 };

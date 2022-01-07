@@ -48,6 +48,15 @@ void PreferencesDialogDev::setupFont()
     ui->spinBox_font_size->setValue(settings.getFont().pointSize());
 }
 
+bool PreferencesDialogDev::updateLanguage(LanguagePair *language)
+{
+    if (!language) { return false; }
+    if (!languages->autoUpdateLanguage(language))       { return false; }
+    if (!transliterators->autoUpdateLanguage(language)) { return false; }
+
+    return true;
+}
+
 void PreferencesDialogDev::writeSettings()
 {
     writeLanguageSourceFileMap();
@@ -117,33 +126,21 @@ void PreferencesDialogDev::on_pushButton_browse_clicked()
 {
     QString filename = QFileDialog::getOpenFileName(this);
 
+    if (filename.isEmpty())
+    {
+        return;
+    }
+
     auto language = LanguagePair::createLanguagePair(filename);
 
-    if (!language)
+    if (!updateLanguage(language))
     {
         QMessageBox::critical(this, "", "Failed to load file: " + filename);
         return;
     }
 
-    for (auto &l : *languages)
-    {
-        if (l->getLanguagePairId() == language->getLanguagePairId())
-        {
-            l = language;
-
-            for (auto t : *transliterators)
-            {
-                if (t->getLanguagePair()->getLanguagePairId() == language->getLanguagePairId())
-                {
-                    t->setLanguagePair(language);
-                }
-            }
-
-            break;
-        }
-    }
-
     languageSourceFileMap.insert(language->getLanguagePairId(), filename);
+
     ui->lineEdit_sourceFile->setText(filename);
 }
 
@@ -198,5 +195,23 @@ void PreferencesDialogDev::on_pushButton_default_incorrect_color_clicked()
     auto defaultColor = settings.getDefaultIncorrectColor();
     settings.saveIncorrectColor(defaultColor);
     ui->pushButton_incorrect_color->setStyleSheet(getStyleSheetForColorPushButton(defaultColor));
+}
+
+
+void PreferencesDialogDev::on_pushButton_use_built_in_clicked()
+{
+    QString filename = ":/" + ui->listWidget->currentItem()->text() + ".xml";
+
+    LanguagePair *language = LanguagePair::createLanguagePair(filename);
+
+    if (!updateLanguage(language))
+    {
+        QMessageBox::critical(this, "", "Built-in file damaged");
+        return;
+    }
+
+    languageSourceFileMap.insert(language->getLanguagePairId(), filename);
+
+    ui->lineEdit_sourceFile->setText(filename);
 }
 

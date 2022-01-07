@@ -1,0 +1,35 @@
+<language_pair bidirectional="0" source_language="Ukrainian" target_language="Scientific">
+ <syllable type="0" target="a" source="а"/>
+ <syllable type="0" target="b" source="б"/>
+ <syllable type="0" target="v" source="в"/>
+ <syllable type="0" target="h" source="г"/>
+ <syllable type="0" target="g" source="ґ"/>
+ <syllable type="0" target="d" source="д"/>
+ <syllable type="0" target="e" source="е"/>
+ <syllable type="0" target="je" source="є"/>
+ <syllable type="0" target="ž" source="ж"/>
+ <syllable type="0" target="z" source="з"/>
+ <syllable type="0" target="i" source="і"/>
+ <syllable type="0" target="ji" source="ї"/>
+ <syllable type="0" target="y" source="и"/>
+ <syllable type="0" target="j" source="й"/>
+ <syllable type="0" target="k" source="к"/>
+ <syllable type="0" target="l" source="л"/>
+ <syllable type="0" target="m" source="м"/>
+ <syllable type="0" target="n" source="н"/>
+ <syllable type="0" target="o" source="о"/>
+ <syllable type="0" target="p" source="п"/>
+ <syllable type="0" target="r" source="р"/>
+ <syllable type="0" target="s" source="с"/>
+ <syllable type="0" target="t" source="т"/>
+ <syllable type="0" target="u" source="у"/>
+ <syllable type="0" target="f" source="ф"/>
+ <syllable type="0" target="ch" source="х"/>
+ <syllable type="0" target="c" source="ц"/>
+ <syllable type="0" target="č" source="ч"/>
+ <syllable type="0" target="š" source="ш"/>
+ <syllable type="0" target="šč" source="щ"/>
+ <syllable type="0" target="ju" source="ю"/>
+ <syllable type="0" target="ja" source="я"/>
+ <syllable type="0" target="’" source="ь"/>
+</language_pair>

@@ -46,12 +46,16 @@ private slots:
 
     void on_pushButton_default_incorrect_color_clicked();
 
+    void on_pushButton_use_built_in_clicked();
+
 private:
     void setupLanguageMap();
 
     void setupColorButtons();
 
     void setupFont();
+
+    bool updateLanguage(LanguagePair *language);
 
     void writeSettings();
 

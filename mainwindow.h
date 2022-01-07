@@ -19,6 +19,7 @@
 #include <QStandardItem>
 #include <QStandardItemModel>
 #include <QMainWindow>
+#include <QScrollBar>
 #include <QColor>
 
 QT_BEGIN_NAMESPACE
@@ -41,6 +42,8 @@ private:
     void setupComboBoxes();
 
     void setupTextEdits();
+
+    void setupScrollBars();
 
     void updateCurrentTransliterator(const QString &sourceLanguage, const QString &targetLanguage);
 
@@ -69,6 +72,8 @@ private slots:
 
     void on_actionUpdate_Libraries_triggered();
 
+    void on_actionClear_triggered();
+
 private:
     void writeSettings();
     void readSettings();
@@ -83,6 +88,10 @@ private:
     WordPainter painter;
 
     Settings settings { "mark-durkot", "Transliterator" };
+
+private:
+    QScrollBar *sourceScrollBar;
+    QScrollBar *targetScrollBar;
 
 };
 #endif // MAINWINDOW_H

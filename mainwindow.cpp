@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     painter.setIncorrectColor(QColor(255,0,0));
     // temporary ----------------------------------
 
+    setupScrollBars();
     setupComboBoxes();
     setupTextEdits();
 
@@ -34,6 +35,12 @@ void MainWindow::initLanguagesAndTransliterators()
     auto ukrainian_passport   = LanguagePair::createLanguagePair(settings.loadLanguageSourceFile("ukrainian_passport"));
     auto ukrainian_scientific = LanguagePair::createLanguagePair(settings.loadLanguageSourceFile("ukrainian_scientific"));
 
+//    auto pinyin_ukrainian     = LanguagePair::createLanguagePair(":/pinyin_ukrainian.xml");
+//    auto german_ukrainian     = LanguagePair::createLanguagePair(":/german_ukrainian.xml");
+//    auto spanish_ukrainian    = LanguagePair::createLanguagePair(":/spanish_ukrainian.xml");
+//    auto ukrainian_passport   = LanguagePair::createLanguagePair(":/ukrainian_passport.xml");
+//    auto ukrainian_scientific = LanguagePair::createLanguagePair(":/ukrainian_scientific.xml");
+
     languages.add(pinyin_ukrainian);
     languages.add(german_ukrainian);
     languages.add(spanish_ukrainian);
@@ -42,7 +49,7 @@ void MainWindow::initLanguagesAndTransliterators()
 
     transliterators.add(new PinyinUkrainianTransliterator    (pinyin_ukrainian));
     transliterators.add(new GermanUkrainianTransliterator    (german_ukrainian));
-    transliterators.add(new Transliterator                   (spanish_ukrainian));
+    transliterators.add(new SpanishUkrainianTransliterator   (spanish_ukrainian));
     transliterators.add(new PassportUkrainianTransliterator  (ukrainian_passport));
     transliterators.add(new ScientificUkrainianTransliterator(ukrainian_scientific));
 }
@@ -64,6 +71,15 @@ void MainWindow::setupTextEdits()
     ui->textEdit_source->setFocus();
 
     ui->textEdit_target->setAcceptRichText(true);
+}
+
+void MainWindow::setupScrollBars()
+{
+    sourceScrollBar = new QScrollBar(ui->textEdit_source->horizontalScrollBar());
+    targetScrollBar = new QScrollBar(ui->textEdit_target->horizontalScrollBar());
+
+    connect(sourceScrollBar, &QScrollBar::valueChanged, targetScrollBar, &QScrollBar::setValue);
+    connect(targetScrollBar, &QScrollBar::valueChanged, sourceScrollBar, &QScrollBar::setValue);
 }
 
 void MainWindow::updateCurrentTransliterator(const QString &sourceLanguage, const QString &targetLanguage)
@@ -217,11 +233,10 @@ void MainWindow::on_comboBox_target_currentTextChanged(const QString &arg1)
     updateSwapButtonStatus();
 }
 
-
 void MainWindow::on_actionUpdate_Libraries_triggered()
 {
-    languages.clear();
-    transliterators.clear();
+    languages.clearData();
+    transliterators.clearData();
 
     initLanguagesAndTransliterators();
 
@@ -234,3 +249,8 @@ void MainWindow::on_actionUpdate_Libraries_triggered()
     ui->comboBox_target->setCurrentText(currentTarget);
 }
 
+void MainWindow::on_actionClear_triggered()
+{
+    ui->textEdit_source->clear();
+    ui->textEdit_target->clear();
+}

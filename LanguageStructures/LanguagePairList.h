@@ -88,6 +88,31 @@ public:
         return targetLanguages;
     }
 
+    bool autoUpdateLanguage(LanguagePair *language)
+    {
+        if (!language) { return false; }
+
+        for (auto &l : *this)
+        {
+            if (l->getLanguagePairId() == language->getLanguagePairId())
+            {
+                l = language;
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    void clearData()
+    {
+        for (auto l : *this)
+        {
+            l->deleteLater();
+        }
+
+        this->clear();
+    }
 };
 
 #endif // LANGUAGEPAIRLIST_H

@@ -90,6 +90,32 @@ public:
 
         return targetLanguages;
     }
+
+    bool autoUpdateLanguage(LanguagePair *language)
+    {
+        if (!language) { return false; }
+
+        for (auto t : *this)
+        {
+            if (t->getLanguagePair()->getLanguagePairId() == language->getLanguagePairId())
+            {
+                t->setLanguagePair(language);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    void clearData()
+    {
+        for (auto t : *this)
+        {
+            t->deleteLater();
+        }
+
+        this->clear();
+    }
 };
 
 #endif // TRANSLITERATORLIST_H

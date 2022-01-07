@@ -1,0 +1,515 @@
+<language_pair bidirectional="1" source_language="Pinyin" target_language="Ukrainian">
+ <syllable type="0" source="a" target="а"/>
+ <syllable type="0" source="ai" target="ай"/>
+ <syllable type="0" source="an" target="ань"/>
+ <syllable type="0" source="ang" target="ан"/>
+ <syllable type="0" source="ao" target="ао"/>
+ <syllable type="0" source="ba" target="ба"/>
+ <syllable type="0" source="bai" target="бай"/>
+ <syllable type="0" source="ban" target="бань"/>
+ <syllable type="0" source="bang" target="бан"/>
+ <syllable type="0" source="bao" target="бао"/>
+ <syllable type="0" source="bei" target="бей"/>
+ <syllable type="0" source="ben" target="бень"/>
+ <syllable type="0" source="beng" target="бен"/>
+ <syllable type="0" source="bi" target="бі"/>
+ <syllable type="0" source="bian" target="бянь"/>
+ <syllable type="0" source="biao" target="бяо"/>
+ <syllable type="0" source="bie" target="бє"/>
+ <syllable type="0" source="bin" target="бінь"/>
+ <syllable type="0" source="bing" target="бін"/>
+ <syllable type="0" source="bo" target="бо"/>
+ <syllable type="0" source="bu" target="бу"/>
+ <syllable type="0" source="ca" target="ца"/>
+ <syllable type="0" source="cai" target="цай"/>
+ <syllable type="0" source="can" target="цань"/>
+ <syllable type="0" source="cang" target="цан"/>
+ <syllable type="0" source="cao" target="цао"/>
+ <syllable type="0" source="ce" target="це"/>
+ <syllable type="0" source="cei" target="цей"/>
+ <syllable type="0" source="cen" target="цень"/>
+ <syllable type="0" source="ceng" target="цен"/>
+ <syllable type="0" source="cha" target="ча"/>
+ <syllable type="0" source="chai" target="чай"/>
+ <syllable type="0" source="chan" target="чань"/>
+ <syllable type="0" source="chang" target="чан"/>
+ <syllable type="0" source="chao" target="чао"/>
+ <syllable type="0" source="che" target="че"/>
+ <syllable type="0" source="chen" target="чень"/>
+ <syllable type="0" source="cheng" target="чен"/>
+ <syllable type="0" source="chi" target="чи"/>
+ <syllable type="0" source="chong" target="чон"/>
+ <syllable type="0" source="chou" target="чов"/>
+ <syllable type="0" source="chu" target="чу"/>
+ <syllable type="0" source="chua" target="чва"/>
+ <syllable type="0" source="chuai" target="чвай"/>
+ <syllable type="0" source="chuan" target="чвань"/>
+ <syllable type="0" source="chuang" target="чван"/>
+ <syllable type="0" source="chui" target="чвей"/>
+ <syllable type="0" source="chun" target="чвень"/>
+ <syllable type="0" source="chuo" target="чво"/>
+ <syllable type="0" source="ci" target="ци"/>
+ <syllable type="0" source="cong" target="цон"/>
+ <syllable type="0" source="cou" target="цов"/>
+ <syllable type="0" source="cu" target="цу"/>
+ <syllable type="0" source="cuan" target="цвань"/>
+ <syllable type="0" source="cui" target="цвей"/>
+ <syllable type="0" source="cun" target="цвень"/>
+ <syllable type="0" source="cuo" target="цво"/>
+ <syllable type="0" source="da" target="да"/>
+ <syllable type="0" source="dai" target="дай"/>
+ <syllable type="0" source="dan" target="дань"/>
+ <syllable type="0" source="dang" target="дан"/>
+ <syllable type="0" source="dao" target="дао"/>
+ <syllable type="0" source="de" target="де"/>
+ <syllable type="0" source="dei" target="дей"/>
+ <syllable type="0" source="den" target="день"/>
+ <syllable type="0" source="deng" target="ден"/>
+ <syllable type="0" source="di" target="ді"/>
+ <syllable type="0" source="dia" target="дя"/>
+ <syllable type="0" source="dian" target="дянь"/>
+ <syllable type="0" source="diang" target="дян"/>
+ <syllable type="0" source="diao" target="дяо"/>
+ <syllable type="0" source="die" target="дє"/>
+ <syllable type="0" source="ding" target="дін"/>
+ <syllable type="0" source="diu" target="дьов"/>
+ <syllable type="0" source="dong" target="дон"/>
+ <syllable type="0" source="dou" target="дов"/>
+ <syllable type="0" source="du" target="ду"/>
+ <syllable type="0" source="duan" target="двань"/>
+ <syllable type="0" source="dui" target="двей"/>
+ <syllable type="0" source="dun" target="двень"/>
+ <syllable type="0" source="duo" target="дво"/>
+ <syllable type="0" source="e" target="е"/>
+ <syllable type="0" source="ei" target="ей"/>
+ <syllable type="0" source="en" target="ень"/>
+ <syllable type="0" source="eng" target="ен"/>
+ <syllable type="0" source="er" target="ер"/>
+ <syllable type="0" source="fa" target="фа"/>
+ <syllable type="0" source="fan" target="фань"/>
+ <syllable type="0" source="fang" target="фан"/>
+ <syllable type="0" source="fei" target="фей"/>
+ <syllable type="0" source="fen" target="фень"/>
+ <syllable type="0" source="feng" target="фен"/>
+ <syllable type="0" source="fiao" target="фяо"/>
+ <syllable type="0" source="fo" target="фо"/>
+ <syllable type="0" source="fou" target="фов"/>
+ <syllable type="0" source="fu" target="фу"/>
+ <syllable type="0" source="ga" target="ґа"/>
+ <syllable type="0" source="gai" target="ґай"/>
+ <syllable type="0" source="gan" target="ґань"/>
+ <syllable type="0" source="gang" target="ґан"/>
+ <syllable type="0" source="gao" target="ґао"/>
+ <syllable type="0" source="ge" target="ґе"/>
+ <syllable type="0" source="gei" target="ґей"/>
+ <syllable type="0" source="gen" target="ґень"/>
+ <syllable type="0" source="geng" target="ґен"/>
+ <syllable type="0" source="go" target="ґо"/>
+ <syllable type="0" source="gong" target="ґон"/>
+ <syllable type="0" source="gou" target="ґов"/>
+ <syllable type="0" source="gu" target="ґу"/>
+ <syllable type="0" source="gua" target="ґва"/>
+ <syllable type="0" source="guai" target="ґвай"/>
+ <syllable type="0" source="guan" target="ґвань"/>
+ <syllable type="0" source="guang" target="ґван"/>
+ <syllable type="0" source="gui" target="ґвей"/>
+ <syllable type="0" source="gun" target="ґвень"/>
+ <syllable type="0" source="guo" target="ґво"/>
+ <syllable type="0" source="ha" target="ха"/>
+ <syllable type="0" source="hai" target="хай"/>
+ <syllable type="0" source="han" target="хань"/>
+ <syllable type="0" source="hang" target="хан"/>
+ <syllable type="0" source="hao" target="хао"/>
+ <syllable type="0" source="he" target="хе"/>
+ <syllable type="0" source="hei" target="хей"/>
+ <syllable type="0" source="hen" target="хень"/>
+ <syllable type="0" source="heng" target="хен"/>
+ <syllable type="0" source="hong" target="хон"/>
+ <syllable type="0" source="hou" target="хов"/>
+ <syllable type="0" source="hu" target="ху"/>
+ <syllable type="0" source="hua" target="хва"/>
+ <syllable type="0" source="huai" target="хвай"/>
+ <syllable type="0" source="huan" target="хвань"/>
+ <syllable type="0" source="huang" target="хван"/>
+ <syllable type="0" source="hui" target="хвей"/>
+ <syllable type="0" source="hun" target="хвень"/>
+ <syllable type="0" source="huo" target="хво"/>
+ <syllable type="0" source="ji" target="дзі"/>
+ <syllable type="0" source="jia" target="дзя"/>
+ <syllable type="0" source="jian" target="дзянь"/>
+ <syllable type="0" source="jiang" target="дзян"/>
+ <syllable type="0" source="jiao" target="дзяо"/>
+ <syllable type="0" source="jie" target="дзє"/>
+ <syllable type="0" source="jin" target="дзінь"/>
+ <syllable type="0" source="jing" target="дзін"/>
+ <syllable type="0" source="jiong" target="дзьон"/>
+ <syllable type="0" source="jiu" target="дзьов"/>
+ <syllable type="0" source="ju" target="дзю"/>
+ <syllable type="0" source="juan" target="дзюань"/>
+ <syllable type="0" source="jue" target="дзюе"/>
+ <syllable type="0" source="jun" target="дзюнь"/>
+ <syllable type="0" source="ka" target="ка"/>
+ <syllable type="0" source="kai" target="кай"/>
+ <syllable type="0" source="kan" target="кань"/>
+ <syllable type="0" source="kang" target="кан"/>
+ <syllable type="0" source="kao" target="као"/>
+ <syllable type="0" source="ke" target="ке"/>
+ <syllable type="0" source="kei" target="кей"/>
+ <syllable type="0" source="ken" target="кень"/>
+ <syllable type="0" source="keng" target="кен"/>
+ <syllable type="0" source="kong" target="кон"/>
+ <syllable type="0" source="kou" target="ков"/>
+ <syllable type="0" source="ku" target="ку"/>
+ <syllable type="0" source="kua" target="ква"/>
+ <syllable type="0" source="kuai" target="квай"/>
+ <syllable type="0" source="kuan" target="квань"/>
+ <syllable type="0" source="kuang" target="кван"/>
+ <syllable type="0" source="kui" target="квей"/>
+ <syllable type="0" source="kun" target="квень"/>
+ <syllable type="0" source="kuo" target="кво"/>
+ <syllable type="0" source="la" target="ла"/>
+ <syllable type="0" source="lai" target="лай"/>
+ <syllable type="0" source="lan" target="лань"/>
+ <syllable type="0" source="lang" target="лан"/>
+ <syllable type="0" source="lao" target="лао"/>
+ <syllable type="0" source="le" target="ле"/>
+ <syllable type="0" source="lei" target="лей"/>
+ <syllable type="0" source="leng" target="лен"/>
+ <syllable type="0" source="li" target="лі"/>
+ <syllable type="0" source="lia" target="ля"/>
+ <syllable type="0" source="lian" target="лянь"/>
+ <syllable type="0" source="liang" target="лян"/>
+ <syllable type="0" source="liao" target="ляо"/>
+ <syllable type="0" source="lie" target="лє"/>
+ <syllable type="0" source="lin" target="лінь"/>
+ <syllable type="0" source="ling" target="лін"/>
+ <syllable type="0" source="liu" target="льов"/>
+ <syllable type="0" source="lo" target="ло"/>
+ <syllable type="0" source="long" target="лон"/>
+ <syllable type="0" source="lou" target="лов"/>
+ <syllable type="0" source="lu" target="лу"/>
+ <syllable type="0" source="luan" target="лвань"/>
+ <syllable type="0" source="lun" target="лвень"/>
+ <syllable type="0" source="luo" target="лво"/>
+ <syllable type="0" source="lü" target="лю"/>
+ <syllable type="0" source="lyu" target="лю"/>
+ <syllable type="0" source="lv" target="лю"/>
+ <syllable type="0" source="lüe" target="люе"/>
+ <syllable type="0" source="lyue" target="люе"/>
+ <syllable type="0" source="lve" target="люе"/>
+ <syllable type="0" source="lüan" target="львань"/>
+ <syllable type="0" source="lün" target="люнь"/>
+ <syllable type="0" source="ma" target="ма"/>
+ <syllable type="0" source="mai" target="май"/>
+ <syllable type="0" source="man" target="мань"/>
+ <syllable type="0" source="mang" target="ман"/>
+ <syllable type="0" source="mao" target="мао"/>
+ <syllable type="0" source="me" target="ме"/>
+ <syllable type="0" source="mei" target="мей"/>
+ <syllable type="0" source="men" target="мень"/>
+ <syllable type="0" source="meng" target="мен"/>
+ <syllable type="0" source="mi" target="мі"/>
+ <syllable type="0" source="mian" target="мянь"/>
+ <syllable type="0" source="miao" target="мяо"/>
+ <syllable type="0" source="mie" target="мє"/>
+ <syllable type="0" source="min" target="мінь"/>
+ <syllable type="0" source="ming" target="мін"/>
+ <syllable type="0" source="miu" target="мйов"/>
+ <syllable type="0" source="mo" target="мо"/>
+ <syllable type="0" source="mou" target="мов"/>
+ <syllable type="0" source="mu" target="му"/>
+ <syllable type="0" source="na" target="на"/>
+ <syllable type="0" source="nai" target="най"/>
+ <syllable type="0" source="nan" target="нань"/>
+ <syllable type="0" source="nang" target="нан"/>
+ <syllable type="0" source="nao" target="нао"/>
+ <syllable type="0" source="ne" target="не"/>
+ <syllable type="0" source="nei" target="ней"/>
+ <syllable type="0" source="nen" target="нень"/>
+ <syllable type="0" source="neng" target="нен"/>
+ <syllable type="0" source="ni" target="ні"/>
+ <syllable type="0" source="nia" target="ня"/>
+ <syllable type="0" source="nian" target="нянь"/>
+ <syllable type="0" source="niang" target="нян"/>
+ <syllable type="0" source="niao" target="няо"/>
+ <syllable type="0" source="nie" target="нє"/>
+ <syllable type="0" source="nin" target="нінь"/>
+ <syllable type="0" source="ning" target="нін"/>
+ <syllable type="0" source="niu" target="ньов"/>
+ <syllable type="0" source="nong" target="нон"/>
+ <syllable type="0" source="nou" target="нов"/>
+ <syllable type="0" source="nu" target="ну"/>
+ <syllable type="0" source="nuan" target="нвань"/>
+ <syllable type="0" source="nun" target="нвень"/>
+ <syllable type="0" source="nuo" target="нво"/>
+ <syllable type="0" source="nü" target="ню"/>
+ <syllable type="0" source="nv" target="ню"/>
+ <syllable type="0" source="nüe" target="нюе"/>
+ <syllable type="0" source="nve" target="нюе"/>
+ <syllable type="0" source="ou" target="ов"/>
+ <syllable type="0" source="pa" target="па"/>
+ <syllable type="0" source="pai" target="пай"/>
+ <syllable type="0" source="pan" target="пань"/>
+ <syllable type="0" source="pang" target="пан"/>
+ <syllable type="0" source="pao" target="пао"/>
+ <syllable type="0" source="pei" target="пей"/>
+ <syllable type="0" source="pen" target="пень"/>
+ <syllable type="0" source="peng" target="пен"/>
+ <syllable type="0" source="pi" target="пі"/>
+ <syllable type="0" source="pian" target="пянь"/>
+ <syllable type="0" source="piang" target="пян"/>
+ <syllable type="0" source="piao" target="пяо"/>
+ <syllable type="0" source="pie" target="пє"/>
+ <syllable type="0" source="pin" target="пінь"/>
+ <syllable type="0" source="ping" target="пін"/>
+ <syllable type="0" source="po" target="по"/>
+ <syllable type="0" source="pou" target="пов"/>
+ <syllable type="0" source="pu" target="пу"/>
+ <syllable type="0" source="qi" target="ці"/>
+ <syllable type="0" source="qia" target="ця"/>
+ <syllable type="0" source="qian" target="цянь"/>
+ <syllable type="0" source="qiang" target="цян"/>
+ <syllable type="0" source="qiao" target="цяо"/>
+ <syllable type="0" source="qie" target="цє"/>
+ <syllable type="0" source="qin" target="цінь"/>
+ <syllable type="0" source="qing" target="цін"/>
+ <syllable type="0" source="qiong" target="цьон"/>
+ <syllable type="0" source="qiu" target="цьов"/>
+ <syllable type="0" source="qu" target="цю"/>
+ <syllable type="0" source="quan" target="цюань"/>
+ <syllable type="0" source="que" target="цюе"/>
+ <syllable type="0" source="qun" target="цюнь"/>
+ <syllable type="0" source="r" target="р"/>
+ <syllable type="0" source="ran" target="жань"/>
+ <syllable type="0" source="rang" target="жан"/>
+ <syllable type="0" source="rao" target="жао"/>
+ <syllable type="0" source="re" target="же"/>
+ <syllable type="0" source="rem" target="жем"/>
+ <syllable type="0" source="ren" target="жень"/>
+ <syllable type="0" source="reng" target="жен"/>
+ <syllable type="0" source="ri" target="жи"/>
+ <syllable type="0" source="rong" target="жон"/>
+ <syllable type="0" source="rou" target="жов"/>
+ <syllable type="0" source="ru" target="жу"/>
+ <syllable type="0" source="rua" target="жва"/>
+ <syllable type="0" source="ruan" target="жвань"/>
+ <syllable type="0" source="rui" target="жвей"/>
+ <syllable type="0" source="run" target="жвень"/>
+ <syllable type="0" source="ruo" target="жво"/>
+ <syllable type="0" source="sa" target="са"/>
+ <syllable type="0" source="sai" target="сай"/>
+ <syllable type="0" source="san" target="сань"/>
+ <syllable type="0" source="sang" target="сан"/>
+ <syllable type="0" source="sao" target="сао"/>
+ <syllable type="0" source="se" target="се"/>
+ <syllable type="0" source="sei" target="сей"/>
+ <syllable type="0" source="sen" target="сень"/>
+ <syllable type="0" source="seng" target="сен"/>
+ <syllable type="0" source="sha" target="ша"/>
+ <syllable type="0" source="shai" target="шай"/>
+ <syllable type="0" source="shan" target="шань"/>
+ <syllable type="0" source="shang" target="шан"/>
+ <syllable type="0" source="shao" target="шао"/>
+ <syllable type="0" source="she" target="ше"/>
+ <syllable type="0" source="shei" target="шей"/>
+ <syllable type="0" source="shen" target="шень"/>
+ <syllable type="0" source="sheng" target="шен"/>
+ <syllable type="0" source="shi" target="ши"/>
+ <syllable type="0" source="shou" target="шов"/>
+ <syllable type="0" source="shu" target="шу"/>
+ <syllable type="0" source="shua" target="шва"/>
+ <syllable type="0" source="shuai" target="швай"/>
+ <syllable type="0" source="shuan" target="швань"/>
+ <syllable type="0" source="shuang" target="шван"/>
+ <syllable type="0" source="shui" target="швей"/>
+ <syllable type="0" source="shun" target="швень"/>
+ <syllable type="0" source="shuo" target="шво"/>
+ <syllable type="0" source="si" target="си"/>
+ <syllable type="0" source="song" target="сон"/>
+ <syllable type="0" source="sou" target="сов"/>
+ <syllable type="0" source="su" target="су"/>
+ <syllable type="0" source="suan" target="свань"/>
+ <syllable type="0" source="sui" target="свей"/>
+ <syllable type="0" source="sun" target="свень"/>
+ <syllable type="0" source="suo" target="сво"/>
+ <syllable type="0" source="ta" target="та"/>
+ <syllable type="0" source="tai" target="тай"/>
+ <syllable type="0" source="tan" target="тань"/>
+ <syllable type="0" source="tang" target="тан"/>
+ <syllable type="0" source="tao" target="тао"/>
+ <syllable type="0" source="te" target="те"/>
+ <syllable type="0" source="tei" target="тей"/>
+ <syllable type="0" source="ten" target="тень"/>
+ <syllable type="0" source="teng" target="тен"/>
+ <syllable type="0" source="ti" target="ті"/>
+ <syllable type="0" source="tian" target="тянь"/>
+ <syllable type="0" source="tiang" target="тян"/>
+ <syllable type="0" source="tiao" target="тяо"/>
+ <syllable type="0" source="tie" target="тє"/>
+ <syllable type="0" source="ting" target="тін"/>
+ <syllable type="0" source="tong" target="тон"/>
+ <syllable type="0" source="tou" target="тов"/>
+ <syllable type="0" source="tu" target="ту"/>
+ <syllable type="0" source="tuan" target="твань"/>
+ <syllable type="0" source="tui" target="твей"/>
+ <syllable type="0" source="tun" target="твень"/>
+ <syllable type="0" source="tuo" target="тво"/>
+ <syllable type="0" source="wa" target="ва"/>
+ <syllable type="0" source="wai" target="вай"/>
+ <syllable type="0" source="wan" target="вань"/>
+ <syllable type="0" source="wang" target="ван"/>
+ <syllable type="0" source="wao" target="вао"/>
+ <syllable type="0" source="wei" target="вей"/>
+ <syllable type="0" source="wen" target="вень"/>
+ <syllable type="0" source="weng" target="вен"/>
+ <syllable type="0" source="wo" target="во"/>
+ <syllable type="0" source="wu" target="ву"/>
+ <syllable type="0" source="xi" target="сі"/>
+ <syllable type="0" source="xia" target="ся"/>
+ <syllable type="0" source="xian" target="сянь"/>
+ <syllable type="0" source="xiang" target="сян"/>
+ <syllable type="0" source="xiao" target="сяо"/>
+ <syllable type="0" source="xie" target="сє"/>
+ <syllable type="0" source="xin" target="сінь"/>
+ <syllable type="0" source="xing" target="сін"/>
+ <syllable type="0" source="xiong" target="сьон"/>
+ <syllable type="0" source="xiu" target="сьов"/>
+ <syllable type="0" source="xu" target="сю"/>
+ <syllable type="0" source="xuan" target="сюань"/>
+ <syllable type="0" source="xue" target="сюе"/>
+ <syllable type="0" source="xun" target="сюнь"/>
+ <syllable type="0" source="ya" target="я"/>
+ <syllable type="0" source="yai" target="яй"/>
+ <syllable type="0" source="yan" target="янь"/>
+ <syllable type="0" source="yang" target="ян"/>
+ <syllable type="0" source="yao" target="яо"/>
+ <syllable type="0" source="ye" target="є"/>
+ <syllable type="0" source="yi" target="ї"/>
+ <syllable type="0" source="yin" target="їнь"/>
+ <syllable type="0" source="ying" target="їн"/>
+ <syllable type="0" source="yo" target="йо"/>
+ <syllable type="0" source="yong" target="йон"/>
+ <syllable type="0" source="you" target="йов"/>
+ <syllable type="0" source="yu" target="ю"/>
+ <syllable type="0" source="yuan" target="юань"/>
+ <syllable type="0" source="yue" target="юе"/>
+ <syllable type="0" source="yun" target="юнь"/>
+ <syllable type="0" source="za" target="дза"/>
+ <syllable type="0" source="zai" target="дзай"/>
+ <syllable type="0" source="zan" target="дзань"/>
+ <syllable type="0" source="zang" target="дзан"/>
+ <syllable type="0" source="zao" target="дзао"/>
+ <syllable type="0" source="ze" target="дзе"/>
+ <syllable type="0" source="zei" target="дзей"/>
+ <syllable type="0" source="zem" target="дзем"/>
+ <syllable type="0" source="zen" target="дзень"/>
+ <syllable type="0" source="zeng" target="дзен"/>
+ <syllable type="0" source="zha" target="джа"/>
+ <syllable type="0" source="zhai" target="джай"/>
+ <syllable type="0" source="zhan" target="джань"/>
+ <syllable type="0" source="zhang" target="джан"/>
+ <syllable type="0" source="zhao" target="джао"/>
+ <syllable type="0" source="zhe" target="дже"/>
+ <syllable type="0" source="zhei" target="джей"/>
+ <syllable type="0" source="zhen" target="джень"/>
+ <syllable type="0" source="zheng" target="джен"/>
+ <syllable type="0" source="zhi" target="джи"/>
+ <syllable type="0" source="zhong" target="джон"/>
+ <syllable type="0" source="zhou" target="джов"/>
+ <syllable type="0" source="zhu" target="джу"/>
+ <syllable type="0" source="zhua" target="джва"/>
+ <syllable type="0" source="zhuai" target="джвай"/>
+ <syllable type="0" source="zhuan" target="джвань"/>
+ <syllable type="0" source="zhuang" target="джван"/>
+ <syllable type="0" source="zhui" target="джвей"/>
+ <syllable type="0" source="zhun" target="джвень"/>
+ <syllable type="0" source="zhuo" target="джво"/>
+ <syllable type="0" source="zi" target="дзи"/>
+ <syllable type="0" source="zong" target="дзон"/>
+ <syllable type="0" source="zou" target="дзов"/>
+ <syllable type="0" source="zu" target="дзу"/>
+ <syllable type="0" source="zuan" target="дзвань"/>
+ <syllable type="0" source="zui" target="дзвей"/>
+ <syllable type="0" source="zun" target="дзвень"/>
+ <syllable type="0" source="zuo" target="дзво"/>
+ <exception source="Aksu" target="Аксу"/>
+ <exception source="Altay" target="Алтай"/>
+ <exception source="Aomen" target="Макао (Аомень)"/>
+ <exception source="Aral" target="Арал"/>
+ <exception source="Artux" target="Артуш"/>
+ <exception source="Arxan" target="Аршан"/>
+ <exception source="Bayannur" target="Баян-Нур"/>
+ <exception source="Beijing" target="Пекін (Бейдзін)"/>
+ <exception source="Beijing" target="Пекін"/>
+ <exception source="Bortala" target="Боро-Тала (Боле)"/>
+ <exception source="Bortala" target="Боро-Тала"/>
+ <exception source="Jiang Jieshi" target="Чан Кайші (Дзян Дзєши)"/>
+ <exception source="Jiǎng Jièshí" target="Чан Кайші (Дзян Дзєши)"/>
+ <exception source="Chiang Kai-shek" target="Чан Кайші"/>
+ <exception source="Dêqên" target="Дечен"/>
+ <exception source="Delingha" target="Делінха"/>
+ <exception source="Delhi" target="Делінха"/>
+ <exception source="Erenhot" target="Ерен-Хото"/>
+ <exception source="Ereen" target="Ерен-Хото"/>
+ <exception source="Ergun" target="Арґунь"/>
+ <exception source="Erlian" target="Ерен-Хото"/>
+ <exception source="Ghulja" target="Кульджа"/>
+ <exception source="Gulja" target="Кульджа"/>
+ <exception source="Golmud" target="Ґолмуд"/>
+ <exception source="Harbin" target="Харбін"/>
+ <exception source="Ha'erbin" target="Харбін"/>
+ <exception source="Hā'ěrbīn" target="Харбін"/>
+ <exception source="Haerbin" target="Харбін"/>
+ <exception source="Hohhot" target="Хух-Хото"/>
+ <exception source="Holingol" target="Холін-Ґол"/>
+ <exception source="Xianggang" target="Гонконґ (Сянґан)"/>
+ <exception source="Xiānggǎng" target="Гонконґ (Сянґан)"/>
+ <exception source="Hong Kong" target="Гонконґ"/>
+ <exception source="Hotan" target="Хотан"/>
+ <exception source="Hulunbuir" target="Хулун-Буїр"/>
+ <exception source="Jilin" target="Ґірін"/>
+ <exception source="Karamay" target="Карамай"/>
+ <exception source="Kashgar" target="Кашґар"/>
+ <exception source="Kaxgar" target="Кашґар"/>
+ <exception source="Khorgas" target="Корґас"/>
+ <exception source="Korgas" target="Корґас"/>
+ <exception source="Kongzi" target="Конфуцій"/>
+ <exception source="Kǒngzǐ" target="Конфуцій"/>
+ <exception source="Kokdala" target="Кокдала"/>
+ <exception source="Korla" target="Корла"/>
+ <exception source="Kuytun" target="Куйтун"/>
+ <exception source="Lhasa" target="Лхаса"/>
+ <exception source="Lhoka" target="Лхока (Шаньнань)"/>
+ <exception source="Lhoka" target="Лхока"/>
+ <exception source="Macau" target="Макао"/>
+ <exception source="Macao" target="Макао"/>
+ <exception source="Manzhouli" target="Маньджурія"/>
+ <exception source="Nagqu" target="Наґчу"/>
+ <exception source="Nanjing" target="Нанкін"/>
+ <exception source="Nanjing" target="Нанкін (Наньдзін)"/>
+ <exception source="Nyingchi" target="Н'їнґчі"/>
+ <exception source="Ordos" target="Ордос"/>
+ <exception source="Qamdo" target="Чамдо"/>
+ <exception source="Shaanxi" target="Шааньсі"/>
+ <exception source="Shangri-La" target="Шанґрі-Ла"/>
+ <exception source="Sun Yixian" target="Сунь Ятсен (Свень Їсянь)"/>
+ <exception source="Sūn Yìxiān" target=" Сунь Ятсен (Свень Їсянь)"/>
+ <exception source="Sun Zhongshan" target="Сунь Ятсен (Свень Джоншань)"/>
+ <exception source="Sūn Zhōngshān" target="Сунь Ятсен (Свень Джоншань)"/>
+ <exception source="Sun Yat-sen" target="Сунь Ятсен"/>
+ <exception source="Tumxuk" target="Тумшук"/>
+ <exception source="Turpan" target="Турфан"/>
+ <exception source="Ulanqab" target="Уланчаб"/>
+ <exception source="Ulan Chab" target="Уланчаб"/>
+ <exception source="Ulan Qab" target="Уланчаб"/>
+ <exception source="Ulanhot" target="Улан-Хото"/>
+ <exception source="Ulankhad" target="Улан-Хад (Чифен)"/>
+ <exception source="Ulankhad" target="Улан-Хад"/>
+ <exception source="Xigazê" target="Шиґадзе"/>
+ <exception source="Xigaze" target="Шиґадзе"/>
+ <exception source="Xilinhot" target="Шилін-Хото"/>
+ <exception source="Yangtze" target="Яндзи"/>
+ <exception source="Yu'an" target="Ю'ань"/>
+ <exception source="Àomén" target="Макао (Аомень)"/>
+ <exception source="Ürümqi" target="Урумчі"/>
+</language_pair>
