@@ -150,7 +150,12 @@ void MainWindow::runDevelopersPreferences()
 
 void MainWindow::on_textEdit_source_textChanged()
 {   
+    QElapsedTimer timer;
+
+    timer.restart();
     auto words = currentTransliterator->transliterate(ui->textEdit_source->toPlainText());
+    auto time = timer.elapsed();
+    qDebug() << time;
 
     painter.paintWords(words);
 

@@ -4,6 +4,7 @@
 #include "LanguageStructures/LanguagePair.h"
 #include "SyllableTree/SyllableTree.h"
 #include "Parsers/Words.h"
+#include "PerformanceBoosters/LanguagePairIndex.h"
 
 #include <QString>
 #include <QObject>
@@ -14,7 +15,7 @@ class Transliterator : public QObject
 public:
     Transliterator(LanguagePair *l, QObject *parent=nullptr)
         : QObject(parent),
-          languagePair(l)
+          languagePair(l), languagePairIndex(l)
     {
     }
 
@@ -131,7 +132,16 @@ protected:
                 break;
             }
 
-            if (auto syllable = syllables.findSyllable(str.left(i + 1)))
+            // non indexed
+//            if (auto syllable = syllables.findSyllable(str.left(i + 1)))
+//            {
+//                auto childNode = node->addChild(syllable);
+//                stringSearch(str.right(str.length() - i - 1), childNode);
+//            }
+
+
+            // indexed
+            if (auto syllable = languagePairIndex.findSyllable(str.left(i + 1)))
             {
                 auto childNode = node->addChild(syllable);
                 stringSearch(str.right(str.length() - i - 1), childNode);
@@ -231,6 +241,7 @@ private:
 
 private:
     LanguagePair *languagePair;
+    LanguagePairIndex languagePairIndex;
 
 protected:
     const SyllablePairSet &syllables  { languagePair->getSyllables()  };

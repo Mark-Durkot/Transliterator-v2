@@ -20,6 +20,7 @@ HEADERS += \
     LanguageStructures/SyllablePair.h \
     LanguageStructures/SyllablePairSet.h \
     Parsers/Words.h \
+    PerformanceBoosters/LanguagePairIndex.h \
     Settings/Settings.h \
     SyllableTree/SyllableTree.h\
     Parsers/XMLParser.h \

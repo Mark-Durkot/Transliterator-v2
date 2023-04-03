@@ -33,7 +33,7 @@ public:
     {
         if (children.isEmpty())
         {
-            return {{syllable}};
+            return {{ syllable }};
         }
 
         SyllableList2D data;
